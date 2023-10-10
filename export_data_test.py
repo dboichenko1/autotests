@@ -106,7 +106,7 @@ def export_data(layout,ws_host):
 def diff(current_testing_package,layout):
     '''
     в режиме симпл возвращает тру фолс по расхождениям в файлам
-    в режиме dff возвращает дифф по файлам 
+    в режиме dff возвращает дифф по файлам
     '''
     if difmod == "simple":
         return filecmp.cmp(f'testing_data/{current_testing_package}/{layout}/stable.csv', f'testing_data/{current_testing_package}/{layout}/testing.csv', shallow=False)
@@ -115,6 +115,11 @@ def diff(current_testing_package,layout):
 def get_nonseries():
     '''
     для получения нонсерии (лейаут NzOOaaky - потом добавить в значения basicstudies)
+    по итогу лучше всего сделать так:
+      кидаем в консоль лон тру 
+      коннектимся к вебсокету
+      грепаем первый дата апдейт
+      посмотреть функцию get_log, типо того https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
     '''
     pass
 
@@ -179,3 +184,10 @@ def start():
     print(result)
     if input("Удалить директорию testing_data? (y/n) " ) == "y" : shutil.rmtree("testing_data", ignore_errors=True)
 start()
+
+
+#TO DO:
+'''
+diff() - create usability dff mode, search good library
+def get_nonseries() - make connect to websocket and seach first du looks https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
+'''
