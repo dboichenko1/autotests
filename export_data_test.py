@@ -12,7 +12,8 @@ from  selenium.webdriver.chrome.options import Options
 import pickle
 
 options = Options()
-options.headless = False
+option_value = "headless"
+options.add_argument(option_value)
 browser = webdriver.Chrome(options=options)
 
 browser.implicitly_wait(5)
@@ -28,6 +29,15 @@ choose_case = input("Какой тест запускаем? Введите на
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
 difmod = "simple"
 
+def timer(f):
+    '''
+    декоратор для замера времени. Время в секундах
+    '''
+    def ob():
+        start = time.time()
+        f()
+        print("Время выполнения = " , time.time() - start)
+    return(ob)
 
 def check_exists_element(metod_search,data_sarch):
     try:
@@ -58,12 +68,10 @@ def export_data(layout,ws_host):
     #принимаем куки
     if check_exists_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all"]'):
         browser.find_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all"]').click()
-    time.sleep(1)
     #откатываемся к первой доступной дате:
     while check_exists_element(By.CSS_SELECTOR,'[aria-label="Go to"]') == False:
         time.sleep(1)
     go_to = browser.find_element(By.CSS_SELECTOR,'[aria-label="Go to"]').click()
-    time.sleep(1)
     data_value = browser.find_element(By.CSS_SELECTOR,"[class='input-RUSovanF size-small-RUSovanF with-end-slot-RUSovanF']").get_attribute("value")
     if data_value != "1023-01-01":
         data = browser.find_element(By.CSS_SELECTOR,"[class='input-RUSovanF size-small-RUSovanF with-end-slot-RUSovanF']")
@@ -71,9 +79,8 @@ def export_data(layout,ws_host):
         for i in range(10):
             actions.send_keys_to_element(data, Keys.BACKSPACE).perform()
         data.send_keys("1023-01-01")
-    time.sleep(2)
     submit_go_to = browser.find_element(By.CSS_SELECTOR,'[data-name="submit-button"]').click()
-    time.sleep(10) #чтоб успели загрузиться все стадисы 
+    time.sleep(5) #чтоб успели загрузиться все стадисы 
     saved_menu = browser.find_element(By.CSS_SELECTOR,'[data-name="save-load-menu"]').click()
     export_chart_data = browser.find_element(By.XPATH, '//*[text()="Export chart data…"]').click()
     chart_name = browser.find_element(By.XPATH,'//*[@id="chart-select"]/span[1]/span/span').text
@@ -99,7 +106,10 @@ def export_data(layout,ws_host):
     for key,value in ws_host_dict.items():
         if value == ws_host:
             current_testing_env = key
-    shutil.move(f'/home/{os.getlogin()}/Downloads/{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv',f'testing_data/{current_testing_package}/{layout}/{current_testing_env}.csv')  
+    if option_value == "headless": #это нужно потому что в этом режиме файлы сохраняются в текущую директорию, а без него в Downloads
+        shutil.move(f'{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv',f'testing_data/{current_testing_package}/{layout}/{current_testing_env}.csv')  
+    else:
+        shutil.move(f'/home/{os.getlogin()}/Downloads/{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv',f'testing_data/{current_testing_package}/{layout}/{current_testing_env}.csv')  
 
 #diff
 def diff(current_testing_package,layout):
@@ -164,22 +174,20 @@ def corestudies():
  
     return corestudies_result
 # start
+@timer
 def start():
     result = []
     authorization()
     if choose_case == "basicstudies":
-        result.append(basicstudies())
+        result.append({"basicstudies" : basicstudies()})
     if choose_case == "prostudies":
-        result.append(prostudies())
+        result.append({"basicstudies" : prostudies()})
     if choose_case == "corestudies":
-        result.append(corestudies())       
-    print(result)
+        result.append({"basicstudies" : corestudies()})      
     if choose_case == "all":
-        result.append(basicstudies())
-        time.sleep(2)
-        result.append(prostudies())
-        time.sleep(2)
-        result.append(corestudies())
+        result.append({"basicstudies" : basicstudies()})
+        result.append({"basicstudies" : prostudies()})
+        result.append({"basicstudies" : corestudies()})
     print(result)
     if input("Удалить директорию testing_data? (y/n) " ) == "y" : shutil.rmtree("testing_data", ignore_errors=True)
 start()
@@ -192,4 +200,4 @@ def get_nonseries() - make connect to websocket and seach first du looks https:/
 '''
 
 
-#второе скачивание не работает с options.headless = True? Он как будето начинает скачивать в текущую директорию в этом режиме 
+
