@@ -8,14 +8,21 @@ import filecmp
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException 
+from  selenium.webdriver.chrome.options import Options
 
-
-browser = webdriver.Chrome()
+options = Options()
+headless_bool = False
+options.headless = headless_bool
+browser = webdriver.Chrome(options=options)
 
 browser.implicitly_wait(5)
 beta = "https://beta.tradingview.com"
-ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.tradingview.com ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.tradingview.com ")}'}
-#ws_host_dict = {"stable":"dal2-studies-1-backend.tradingview.com","testing":"dal2-studies-2-backend.tradingview.com"}
+default_ws_host = {"stable":"dal2-stable-charts.xstaging.tv","testing":"dal2-adolgov-backend.xstaging.tv"}
+default_ws_host_input = input(f'Исполльзовать дефолтные ws_host? y/n \n{default_ws_host} ')
+if default_ws_host_input == "y":
+    ws_host_dict = default_ws_host
+else:
+    ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.xstaging.tv ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.xstaging.tv ")}'}
 layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
 choose_case = input("Какой тест запускаем? Введите название пакета без tv-. Для запуска всех тестов введите all\n")
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
