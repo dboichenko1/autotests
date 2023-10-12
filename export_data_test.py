@@ -9,10 +9,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException 
 from  selenium.webdriver.chrome.options import Options
+import pickle
 
 options = Options()
-headless_bool = False
-options.headless = headless_bool
+options.headless = False
 browser = webdriver.Chrome(options=options)
 
 browser.implicitly_wait(5)
@@ -38,19 +38,11 @@ def check_exists_element(metod_search,data_sarch):
 
 #login
 def authorization():
-    #простая авторизация под батутом 
+    #простая авторизация из куков под батутом
     browser.get(beta)
-    user_menu = browser.find_element(By.CSS_SELECTOR, 'button[aria-label="Open user menu"]').click()
-    sign_in = browser.find_element(By.CSS_SELECTOR, 'button[role="menuitem"]').click()
-    email_button = browser.find_element(By.CSS_SELECTOR, 'button[name="Email"]').click()
-    email_input = browser.find_element(By.CSS_SELECTOR, 'input[id="id_username"]').send_keys("Batut") #Admin
-    password_input = browser.find_element(By.CSS_SELECTOR, 'input[id="id_password"]').send_keys("1234") #dXeeuM4r
-    button_sign_in_atorization = browser.find_element(By.XPATH, '//button[contains(@class,"submitButton")]').click()
-    if check_exists_element(By.XPATH,'//*[text()="Please confirm that you are not a robot by clicking the captcha box."]'): #потом реализовать автопроход капчи
-        input("Пройдите капчу и нажмите логин, введите любой текст для продолжения ")
-    #записываем полученные куки
-    session = browser.get_cookies()
-    for cookie in session:
+
+    cookies = pickle.load(open("cookies.pkl", "rb"))
+    for cookie in cookies:
         browser.add_cookie(cookie)
 
 #export data 
@@ -198,3 +190,6 @@ start()
 diff() - create usability dff mode, search good library
 def get_nonseries() - make connect to websocket and seach first du looks https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
 '''
+
+
+#второе скачивание не работает с options.headless = True? Он как будето начинает скачивать в текущую директорию в этом режиме 
