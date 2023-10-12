@@ -68,6 +68,8 @@ def export_data(layout,ws_host):
     #принимаем куки
     if check_exists_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all"]'):
         browser.find_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all"]').click()
+    while check_exists_element(By.CSS_SELECTOR,'[class="loader-l31H9iuA loader-_7n3rLPY"]'): #любая загрузка стадиса
+        time.sleep(1)
     #откатываемся к первой доступной дате:
     while check_exists_element(By.CSS_SELECTOR,'[aria-label="Go to"]') == False:
         time.sleep(1)
@@ -80,7 +82,12 @@ def export_data(layout,ws_host):
             actions.send_keys_to_element(data, Keys.BACKSPACE).perform()
         data.send_keys("1023-01-01")
     submit_go_to = browser.find_element(By.CSS_SELECTOR,'[data-name="submit-button"]').click()
-    time.sleep(5) #чтоб успели загрузиться все стадисы 
+    #эта повторение действий нужно потому что на тяжелый лейаутах первый го ту не срабатывает и соответстветнно, експорт дата берется неверная
+    for i in range(3):
+        go_to
+        submit_go_to
+        while check_exists_element(By.CSS_SELECTOR,'[class="loader-l31H9iuA loader-_7n3rLPY"]'): #любая загрузка стадиса
+            time.sleep(1)
     saved_menu = browser.find_element(By.CSS_SELECTOR,'[data-name="save-load-menu"]').click()
     export_chart_data = browser.find_element(By.XPATH, '//*[text()="Export chart data…"]').click()
     chart_name = browser.find_element(By.XPATH,'//*[@id="chart-select"]/span[1]/span/span').text
@@ -146,8 +153,9 @@ def basicstudies():
         export_data(i,ws_host_dict['stable'])
         export_data(i,ws_host_dict['testing'])
         basicstudies_result[i] = diff('basicstudies',i)
-        if delete_identical_files == "y" and diff('basicstudies',i) : shutil.rmtree(f'testing_data/basicstudies/{i}', ignore_errors=True) 
-
+        if delete_identical_files == "y" and diff('basicstudies',i) : shutil.rmtree(f'testing_data/basicstudies/{i}', ignore_errors=True)
+        print(f'{i} is ready')
+    print("basicstudies is ready")
     return basicstudies_result
 def prostudies():
     '''
@@ -159,7 +167,8 @@ def prostudies():
         export_data(i,ws_host_dict['testing'])
         prostudies_result[i] = diff('prostudies',i)
         if delete_identical_files == "y" and diff('prostudies',i) : shutil.rmtree(f'testing_data/prostudies/{i}', ignore_errors=True) 
-
+        print(f'{i} is ready')
+    print("prostudies is ready")
     return prostudies_result
 def corestudies():
     '''
@@ -171,7 +180,8 @@ def corestudies():
         export_data(i,ws_host_dict['testing'])
         corestudies_result[i] = diff('corestudies',i)
         if delete_identical_files == "y" and diff('corestudies',i) : shutil.rmtree(f'testing_data/corestudies/{i}', ignore_errors=True)
- 
+        print(f'{i} is ready')
+    print("corestudies is ready")
     return corestudies_result
 # start
 @timer
@@ -181,22 +191,23 @@ def start():
     if choose_case == "basicstudies":
         result.append({"basicstudies" : basicstudies()})
     if choose_case == "prostudies":
-        result.append({"basicstudies" : prostudies()})
+        result.append({"prostudies" : prostudies()})
     if choose_case == "corestudies":
-        result.append({"basicstudies" : corestudies()})      
+        result.append({"corestudies" : corestudies()})      
     if choose_case == "all":
-        result.append({"basicstudies" : basicstudies()})
-        result.append({"basicstudies" : prostudies()})
-        result.append({"basicstudies" : corestudies()})
+        result.append({"basicstudies" : basicstudies()})     
+        result.append({"prostudies" : prostudies()})
+        result.append({"corestudies" : corestudies()})    
     print(result)
-    if input("Удалить директорию testing_data? (y/n) " ) == "y" : shutil.rmtree("testing_data", ignore_errors=True)
 start()
+if input("Удалить директорию testing_data? (y/n) " ) == "y" : shutil.rmtree("testing_data", ignore_errors=True)
 
 
 #TO DO:
 '''
 diff() - create usability dff mode, search good library
 def get_nonseries() - make connect to websocket and seach first du looks https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
+make all in docker container
 '''
 
 
