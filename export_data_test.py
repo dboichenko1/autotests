@@ -147,6 +147,7 @@ def basicstudies():
     возвращает словарь: ключи лейауты, значение - диф
     '''
     basicstudies_result = {}
+    print("start basicstudies...")
     for i in layout_dict['basicstudies']:
         # if i == "NzOOaaky":
         #     get_nonseries()
@@ -154,34 +155,36 @@ def basicstudies():
         export_data(i,ws_host_dict['testing'])
         basicstudies_result[i] = diff('basicstudies',i)
         if delete_identical_files == "y" and diff('basicstudies',i) : shutil.rmtree(f'testing_data/basicstudies/{i}', ignore_errors=True)
-        print(f'{i} is ready')
-    print("basicstudies is ready")
+        print(f'{i} is ready! The files are identical: {basicstudies_result[i]:}')
+    print("basicstudies is ready!")
     return basicstudies_result
 def prostudies():
     '''
     возвращает словарь: ключи лейауты, значение - диф
     '''
     prostudies_result = {}
+    print("start prostudies...")
     for i in layout_dict['prostudies']:
         export_data(i,ws_host_dict['stable'])
         export_data(i,ws_host_dict['testing'])
         prostudies_result[i] = diff('prostudies',i)
         if delete_identical_files == "y" and diff('prostudies',i) : shutil.rmtree(f'testing_data/prostudies/{i}', ignore_errors=True) 
-        print(f'{i} is ready')
-    print("prostudies is ready")
+        print(f'{i} is ready. The files are identical: {prostudies_result[i]}')
+    print("prostudies is ready!")
     return prostudies_result
 def corestudies():
     '''
     возвращает словарь: ключи лейауты, значение - диф
     '''
     corestudies_result = {}
+    print("start corestudies...")
     for i in layout_dict['corestudies']:
         export_data(i,ws_host_dict['stable'])
         export_data(i,ws_host_dict['testing'])
         corestudies_result[i] = diff('corestudies',i)
         if delete_identical_files == "y" and diff('corestudies',i) : shutil.rmtree(f'testing_data/corestudies/{i}', ignore_errors=True)
-        print(f'{i} is ready')
-    print("corestudies is ready")
+        print(f'{i} is ready. The files are identical: {corestudies_result[i]}')
+    print("corestudies is ready!")
     return corestudies_result
 # start
 @timer
@@ -198,7 +201,7 @@ def start():
         result.append({"basicstudies" : basicstudies()})     
         result.append({"prostudies" : prostudies()})
         result.append({"corestudies" : corestudies()})    
-    print(result)
+    print(f'all right! result:\n{result}')
 start()
 if input("Удалить директорию testing_data? (y/n) " ) == "y" : shutil.rmtree("testing_data", ignore_errors=True)
 
