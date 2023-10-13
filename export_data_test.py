@@ -18,7 +18,7 @@ browser = webdriver.Chrome(options=options)
 
 browser.implicitly_wait(5)
 beta = "https://beta.tradingview.com"
-default_ws_host = {"stable":"dal2-stable-charts.xstaging.tv","testing":"dal2-adolgov-backend.xstaging.tv"}
+default_ws_host = {"stable":"dal2-studies-1-backend.xstaging.tv","testing":"dal2-studies-2-backend.xstaging.tv"}
 default_ws_host_input = input(f'Исполльзовать дефолтные ws_host? y/n \n{default_ws_host} ')
 if default_ws_host_input == "y":
     ws_host_dict = default_ws_host
@@ -92,8 +92,9 @@ def export_data(layout,ws_host):
     export_chart_data = browser.find_element(By.XPATH, '//*[text()="Export chart data…"]').click()
     chart_name = browser.find_element(By.XPATH,'//*[@id="chart-select"]/span[1]/span/span').text
     export_button = browser.find_element(By.XPATH,'//*[text()="Export"]').click()
-    time.sleep(5) #чтоб успел скачаться файл
-
+    #ждем пока скачается файл
+    while not os.path.exists(f'{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv'):
+        time.sleep(1)
     #перенос сохраненного файла из  Download в папку с проектом/testing_data/имя тестируемого пакета/имя лейаута/stable.scv или testing.csv
     if not os.path.isdir('testing_data'):
         os.makedirs('testing_data')
@@ -212,6 +213,3 @@ diff() - create usability dff mode, search good library
 def get_nonseries() - make connect to websocket and seach first du looks https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
 make all in docker container
 '''
-
-
-
