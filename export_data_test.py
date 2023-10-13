@@ -13,7 +13,9 @@ import pickle
 
 options = Options()
 option_value = "headless"
+prefs = {"download.default_directory" : "."}
 options.add_argument(option_value)
+options.add_experimental_option("prefs",prefs)
 browser = webdriver.Chrome(options=options)
 
 browser.implicitly_wait(5)
