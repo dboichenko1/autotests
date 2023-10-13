@@ -10,6 +10,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException 
 from  selenium.webdriver.chrome.options import Options
 import pickle
+import re
 
 options = Options()
 option_value = "headless"
@@ -26,10 +27,12 @@ if default_ws_host_input == "y":
     ws_host_dict = default_ws_host
 else:
     ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.xstaging.tv ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.xstaging.tv ")}'}
-layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
+layout_dict = {'basicstudies':['NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
 choose_case = input("Какой тест запускаем? Введите название пакета без tv-. Для запуска всех тестов введите all\n")
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
 difmod = "simple"
+#'GNuvT7h0','zJlhAtff','lPS6jvVP',
+#Вспомогательные функции
 
 def timer(f):
     '''
@@ -47,6 +50,27 @@ def check_exists_element(metod_search,data_sarch):
     except NoSuchElementException:
         return False
     return True
+
+def current_testing_package(layout):
+    '''
+    Возвращает название текущего тестируемого пакета на основе лейаута
+    '''
+    current_testing_package = ""
+    for key,value in layout_dict.items():
+        for j in value:
+            if j == layout:
+                current_testing_package = key
+    return current_testing_package
+def current_testing_env(ws_host):
+    '''
+    Определеляет текущее тестовое окружение: стейбл или тестинг на основе ws_host
+    '''
+    current_testing_env = ""
+    for key,value in ws_host_dict.items():
+        if value == ws_host:
+            current_testing_env = key
+    return current_testing_env
+
 
 #login
 def authorization():
@@ -97,51 +121,75 @@ def export_data(layout,ws_host):
     #ждем пока скачается файл
     while not os.path.exists(f'{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv'):
         time.sleep(1)
-    #перенос сохраненного файла из  Download в папку с проектом/testing_data/имя тестируемого пакета/имя лейаута/stable.scv или testing.csv
-    if not os.path.isdir('testing_data'):
-        os.makedirs('testing_data')
 
-    #определение текущего текстируемого пакета:
-    current_testing_package = ""
-    for key,value in layout_dict.items():
-        for j in value:
-            if j == layout:
-                current_testing_package = key   
+    #создаем нужные папки по пакетам если их нет
+    if not os.path.isdir(f'testing_data/{current_testing_package(layout)}/{layout}'):
+        os.makedirs(f'testing_data/{current_testing_package(layout)}/{layout}')
 
-    if not os.path.isdir(f'testing_data/{current_testing_package}/{layout}'):
-        os.makedirs(f'testing_data/{current_testing_package}/{layout}')
+    #Переносим експортированные данные из текущей директории в нужную папку и переименовываем
+    shutil.move(f'{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv',f'testing_data/{current_testing_package(layout)}/{layout}/{current_testing_env(ws_host)}.csv')  
 
-    #определение текущего окружения - стейбл или тестинг:
-    current_testing_env = ""
-    for key,value in ws_host_dict.items():
-        if value == ws_host:
-            current_testing_env = key
-    if option_value == "headless": #это нужно потому что в этом режиме файлы сохраняются в текущую директорию, а без него в Downloads
-        shutil.move(f'{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv',f'testing_data/{current_testing_package}/{layout}/{current_testing_env}.csv')  
-    else:
-        shutil.move(f'/home/{os.getlogin()}/Downloads/{chart_name.replace(":", "_").replace("*","_").replace("/","_")}.csv',f'testing_data/{current_testing_package}/{layout}/{current_testing_env}.csv')  
 
 #diff
-def diff(current_testing_package,layout):
+def diff(current_testing_package,layout,nonseries = False,key = ""):
     '''
     в режиме симпл возвращает тру фолс по расхождениям в файлам
     в режиме dff возвращает дифф по файлам
     '''
     if difmod == "simple":
-        return filecmp.cmp(f'testing_data/{current_testing_package}/{layout}/stable.csv', f'testing_data/{current_testing_package}/{layout}/testing.csv', shallow=False)
-
+        if nonseries == False:
+            return filecmp.cmp(f'testing_data/{current_testing_package}/{layout}/stable.csv', f'testing_data/{current_testing_package}/{layout}/testing.csv', shallow=False)
+        if nonseries == True:
+            return filecmp.cmp(f'testing_data/{current_testing_package}/{layout}_nonseries/{key}/stable.json', f'testing_data/{current_testing_package}/{layout}_nonseries/{key}/testing.json', shallow=False)
 #get nonseries 
-def get_nonseries():
+def get_nonseries(layout,ws_host):
     '''
-    для получения нонсерии (лейаут NzOOaaky - потом добавить в значения basicstudies)
-    по итогу лучше всего сделать так:
-      кидаем в консоль лон тру 
-      коннектимся к вебсокету
-      грепаем первый дата апдейт
-      посмотреть функцию get_log, типо того https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
+    Создает в директории с тестируемым пакетом директории {layout}_nonseries, внутри отдельно директории с id-шниками, внутри которых файлы стейбл и тестинг json с первым дата апдейтом
+    Возвращает массив с id-шниками
+    надо применить к лейауту NzOOaaky - из пакета basicstudies, а также к вольюму + для паттерном можно будет сделать лейауты (поговрить с Ваней, если есть кейсы которые ботом не покрыть)
     '''
-    pass
+    array_key = []
+    browser.get(f'{beta}/chart/{layout}/?ws_host={ws_host}')
+    #команда для логов включения
+    browser.execute_script("lon(true)")
+    time.sleep(10) #чтоб успели прийти все апдейты, через ожидание загрузки всех ожиданий стадисов почему то не работает, нонсерия не успевает приходить хз
+    #команда для логов получения - возвращает массив с строками
+    logs = browser.execute_script('return lget(1000000);')
+    create_study_id_dict = {}
+    for str in logs:
+        if "create_study" in str:
+            create_study_id_dict[(re.search(r"st\d+",str).group())] = "" #вылавливаем id-шник create_study и конвертим из объекта re.Match в строку(group()) r перед строкой позволяет не учитывать экранирование
+    #собираю все дата апдейты
+    all_du = []
+    for str in logs:
+        if "du" in str:
+            all_du.append(str)
+    # проходимся по всем записаным айдишникам(ключи) и ищем их в каждой строчке массива с дата апдейстам
+    # все вхождения id-шника, пихаем в массив, далее берем из него самую большую строку и записываем как велью по ключу
+    for key,value in create_study_id_dict.items():
+        array_with_all_std = []
+        for str in all_du:
+            if key in str:
+                if key == "st1":
+                    if "st11" in str or "st12" in str or "st13" in str: #жесткий костыль, чтоб в ст1 не попадал ст11 и ст12, надо придумать что-то другое + аналогично для ст1n ст2n ....
+                        continue
+                array_with_all_std.append(str)
+        if len(array_with_all_std) !=0: #на всякий случай, что все не сломалось если будет пустой массив
+            create_study_id_dict[key]=re.sub("^.*'ns':","",max(array_with_all_std, key=len)).replace("\\'","'") #здесь я убираю лишнее и меняю кавычки (чтоб избежать дифа в каждом файле)
+    # из самой длинной строки массива, куда записал все вхождения по ключам с стдешниками, самая длинная строка = первый дата апдейт - т.к. больше всего весит - проверил.
+    # Может быть позже придумаю как брать первый дата апдейт менее костыльно  
 
+    #создаю внутри папки с лейаутом папки по каждому стадису и записываю туда первый дата апдейт в формате json
+    for key,value in create_study_id_dict.items():
+        #записываем ключи в массив который возвращаем, чтоб потом по ним проходиться в тест кейсах и дифать
+        array_key.append(key)
+        #создаем нужные папки по пакетам если их нет 
+        if not os.path.isdir(f'testing_data/{current_testing_package(layout)}/{layout}_nonseries/{key}'):
+            os.makedirs(f'testing_data/{current_testing_package(layout)}/{layout}_nonseries/{key}')
+
+        with open(f"testing_data/{current_testing_package(layout)}/{layout}_nonseries/{key}/{current_testing_env(ws_host)}.json","w+") as q:
+            q.write(f'{value}')
+    return array_key
 
 #testcases
 
@@ -152,13 +200,20 @@ def basicstudies():
     basicstudies_result = {}
     print("start basicstudies...")
     for i in layout_dict['basicstudies']:
-        # if i == "NzOOaaky":
-        #     get_nonseries()
+        if i == "NzOOaaky": #это лейаут по которому нужно допом дифнуть нонсерию
+            print(f'start nonseries test for {i}')
+            key_id = get_nonseries(i,ws_host_dict['stable']) #создаем файловую структуру для стейбловый и сразу записываем массив айдишников, с тестингом они одинаковые (в рамках лейаута)
+            get_nonseries(i,ws_host_dict['testing']) #и для тестовых 
+            for id in key_id: 
+                basicstudies_result[f'{i}_nonseries/{id}'] = diff('basicstudies',i,nonseries=True,key = id) #также делаем диф только по каждому айдишнику который накинут на чарт 
+                if delete_identical_files == "y" and basicstudies_result[f'{i}_nonseries/{id}'] : shutil.rmtree(f'testing_data/basicstudies/{i}_nonseries/{id}', ignore_errors=True)
+                print(f'стадис с id: {id} is ready! The files are identical: {basicstudies_result[f"{i}_nonseries/{id}"]}')
+            print("nonseries test is ready!")
         export_data(i,ws_host_dict['stable'])
         export_data(i,ws_host_dict['testing'])
         basicstudies_result[i] = diff('basicstudies',i)
-        if delete_identical_files == "y" and diff('basicstudies',i) : shutil.rmtree(f'testing_data/basicstudies/{i}', ignore_errors=True)
-        print(f'{i} is ready! The files are identical: {basicstudies_result[i]:}')
+        if delete_identical_files == "y" and basicstudies_result[i] : shutil.rmtree(f'testing_data/basicstudies/{i}', ignore_errors=True)
+        print(f'{i} is ready! The files are identical: {basicstudies_result[i]}')
     print("basicstudies is ready!")
     return basicstudies_result
 def prostudies():
@@ -214,4 +269,11 @@ if input("Удалить директорию testing_data? (y/n) " ) == "y" : s
 diff() - create usability dff mode, search good library
 def get_nonseries() - make connect to websocket and seach first du looks https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
 make all in docker container
+'''
+#PROBLEB:
+'''
+1. проблема с получением дата апдейтов по 13+стадису, посмотреть в консоли браузера - дата апдейты есть , разобраться. Сейчас туда прилетают стади комплиты
+2. сделать более читаемый вывод для нонсерии кейса сейчас не очень:
+[{'basicstudies': {'NzOOaaky_nonseries/st1': True, 'NzOOaaky_nonseries/st2': True, 'NzOOaaky_nonseries/st3': True, 'NzOOaaky_nonseries/st4': True, 'NzOOaaky_nonseries/st5': True, 'NzOOaaky_nonseries/st6': True, 'NzOOaaky_nonseries/st7': True, 'NzOOaaky_nonseries/st8': True, 'NzOOaaky_nonseries/st9': True, 'NzOOaaky_nonseries/st10': True, 'NzOOaaky_nonseries/st11': True, 'NzOOaaky_nonseries/st12': True, 'NzOOaaky_nonseries/st13': False, 'NzOOaaky_nonseries/st14': False, 'NzOOaaky_nonseries/st15': False, 'NzOOaaky_nonseries/st16': False, 'NzOOaaky': True}}]
+3. полученные файлы не распаршиваются в json, посмотреть что еще нужно убрать/заменить и использовать json дамп или лоад или что-то другое чтоб они сразу записывались в человеко читаемом виде 
 '''
