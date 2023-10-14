@@ -27,11 +27,11 @@ if default_ws_host_input == "y":
     ws_host_dict = default_ws_host
 else:
     ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.xstaging.tv ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.xstaging.tv ")}'}
-layout_dict = {'basicstudies':['NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
+layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
 choose_case = input("Введите название тестируемого пакета, доступно: basicstudies, prostudies, corestudies.\nДля запуска всех тестов введите all\n")
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
 difmod = "simple"
-#'GNuvT7h0','zJlhAtff','lPS6jvVP',
+
 #Вспомогательные функции
 
 def timer(f):
@@ -163,10 +163,6 @@ def get_nonseries(layout,ws_host):
             create_study_id_dict[(re.search(r"st\d+",str).group())] = "" #вылавливаем id-шник create_study и конвертим из объекта re.Match в строку(group()) r перед строкой позволяет не учитывать экранирование
         elif "'m':'du'" in str: #'m':'du' потому что просто du дает неверный результат - был баг 
             all_du.append(str)
-    #для теста - потом удалить 
-    # with open(f"{current_testing_env(ws_host)}result.txt","w+") as q:
-    #     for i in all_du:
-    #         q.write(f'{i}\n')
     # проходимся по всем записаным айдишникам(ключи) и ищем их в каждой строчке массива с дата апдейстам
     # все вхождения id-шника, пихаем в массив, далее проверяем что там нет левых ст11 12 и т.д. и берем из него самую большую строку и записываем как велью по ключу
     for key,value in create_study_id_dict.items():
@@ -180,10 +176,9 @@ def get_nonseries(layout,ws_host):
                         if f"{key}{i}" in str: #проверю что для st1 st2 и т.д. до 9 не попали st11, st12 и т.д. если будут лейауты больше чем с 99 стадисами нужно будет поправить проверку
                             list_du_with_some_id.remove(str) # и удаляю их если они туда попали                
         if len(list_du_with_some_id) !=0: #на всякий случай, что все не сломалось если будет пустой массив
-            # ДЛЯ ТЕСТ ПОТОМ УДАЛТЬ СТРОЧКУ БЕЗ РЕГЕКСПА: 
             create_study_id_dict[key]=re.sub("^.*'ns':","",max(list_du_with_some_id, key=len)).replace("\\'","'") #здесь я убираю лишнее и меняю кавычки (чтоб избежать дифа в каждом файле)
-            #create_study_id_dict[key]=max(list_du_with_some_id, key=len).replace("\\'","'") #здесь я убираю лишнее и меняю кавычки (чтоб избежать дифа в каждом файле)
-
+        else:
+            print(f'В {current_testing_package(layout)}/{layout}_nonseries/{key}/{current_testing_env(ws_host)} не было дата апдейтов!!!')
     # из самой длинной строки массива, куда записал все вхождения по ключам с стдешниками, самая длинная строка = первый дата апдейт - т.к. больше всего весит - проверил.
     # Может быть позже придумаю как брать первый дата апдейт менее костыльно  
 
@@ -222,6 +217,7 @@ def basicstudies():
         print(f'{i} is ready! The files are identical: {basicstudies_result[i]}')
     print("basicstudies is ready!")
     return basicstudies_result
+
 def prostudies():
     '''
     возвращает словарь: ключи лейауты, значение - диф
@@ -236,6 +232,7 @@ def prostudies():
         print(f'{i} is ready. The files are identical: {prostudies_result[i]}')
     print("prostudies is ready!")
     return prostudies_result
+
 def corestudies():
     '''
     возвращает словарь: ключи лейауты, значение - диф
@@ -278,7 +275,7 @@ make all in docker container
 '''
 #PROBLEB:
 '''
-1. проблема с получением дата апдейтов по 13+стадису, посмотреть в консоли браузера - дата апдейты есть , разобраться. Сейчас туда прилетают пустые дата апдейты
+1. проблема с получением дата апдейтов по 13+стадису, посмотреть в консоли браузера - дата апдейты есть , разобраться. Сейчас туда прилетают пустые дата апдейты. Попробовал сделать 6 стадисов на чарте, все равно упорно по 4 последним прилета..т пустые дата апдейты. Очено странно
 2. сделать более читаемый вывод для нонсерии кейса сейчас не очень:
 [{'basicstudies': {'NzOOaaky_nonseries/st1': True, 'NzOOaaky_nonseries/st2': True, 'NzOOaaky_nonseries/st3': True, 'NzOOaaky_nonseries/st4': True, 'NzOOaaky_nonseries/st5': True, 'NzOOaaky_nonseries/st6': True, 'NzOOaaky_nonseries/st7': True, 'NzOOaaky_nonseries/st8': True, 'NzOOaaky_nonseries/st9': True, 'NzOOaaky_nonseries/st10': True, 'NzOOaaky_nonseries/st11': True, 'NzOOaaky_nonseries/st12': True, 'NzOOaaky_nonseries/st13': False, 'NzOOaaky_nonseries/st14': False, 'NzOOaaky_nonseries/st15': False, 'NzOOaaky_nonseries/st16': False, 'NzOOaaky': True}}]
 3. полученные файлы не распаршиваются в json, посмотреть что еще нужно убрать/заменить и использовать json дамп или лоад или что-то другое чтоб они сразу записывались в человеко читаемом виде 
