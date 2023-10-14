@@ -28,7 +28,7 @@ if default_ws_host_input == "y":
 else:
     ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.xstaging.tv ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.xstaging.tv ")}'}
 layout_dict = {'basicstudies':['NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
-choose_case = input("Какой тест запускаем? Введите название пакета без tv-. Для запуска всех тестов введите all\n")
+choose_case = input("Введите название тестируемого пакета, доступно: basicstudies, prostudies, corestudies.\nДля запуска всех тестов введите all\n")
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
 difmod = "simple"
 #'GNuvT7h0','zJlhAtff','lPS6jvVP',
@@ -148,48 +148,54 @@ def get_nonseries(layout,ws_host):
     Возвращает массив с id-шниками
     надо применить к лейауту NzOOaaky - из пакета basicstudies, а также к вольюму + для паттерном можно будет сделать лейауты (поговрить с Ваней, если есть кейсы которые ботом не покрыть)
     '''
-    array_key = []
     browser.get(f'{beta}/chart/{layout}/?ws_host={ws_host}')
     #команда для логов включения
     browser.execute_script("lon(true)")
     time.sleep(10) #чтоб успели прийти все апдейты, через ожидание загрузки всех ожиданий стадисов почему то не работает, нонсерия не успевает приходить хз
     #команда для логов получения - возвращает массив с строками
     logs = browser.execute_script('return lget(1000000);')
+
+    #собираю все дата апдейты и id-шники стадисов
     create_study_id_dict = {}
+    all_du = []
     for str in logs:
         if "create_study" in str:
             create_study_id_dict[(re.search(r"st\d+",str).group())] = "" #вылавливаем id-шник create_study и конвертим из объекта re.Match в строку(group()) r перед строкой позволяет не учитывать экранирование
-    #собираю все дата апдейты
-    all_du = []
-    for str in logs:
-        if "du" in str:
+        elif "'m':'du'" in str: #'m':'du' потому что просто du дает неверный результат - был баг 
             all_du.append(str)
+    #для теста - потом удалить 
+    # with open(f"{current_testing_env(ws_host)}result.txt","w+") as q:
+    #     for i in all_du:
+    #         q.write(f'{i}\n')
     # проходимся по всем записаным айдишникам(ключи) и ищем их в каждой строчке массива с дата апдейстам
-    # все вхождения id-шника, пихаем в массив, далее берем из него самую большую строку и записываем как велью по ключу
+    # все вхождения id-шника, пихаем в массив, далее проверяем что там нет левых ст11 12 и т.д. и берем из него самую большую строку и записываем как велью по ключу
     for key,value in create_study_id_dict.items():
-        array_with_all_std = []
-        for str in all_du:
-            if key in str:
-                if key == "st1":
-                    if "st11" in str or "st12" in str or "st13" in str: #жесткий костыль, чтоб в ст1 не попадал ст11 и ст12, надо придумать что-то другое + аналогично для ст1n ст2n ....
-                        continue
-                array_with_all_std.append(str)
-        if len(array_with_all_std) !=0: #на всякий случай, что все не сломалось если будет пустой массив
-            create_study_id_dict[key]=re.sub("^.*'ns':","",max(array_with_all_std, key=len)).replace("\\'","'") #здесь я убираю лишнее и меняю кавычки (чтоб избежать дифа в каждом файле)
+        list_du_with_some_id = []
+        for du in all_du:
+            if key in du:
+                list_du_with_some_id.append(du)
+        if len(key) < 4: #отлавливаю st1 st2 и т.д. до 9
+                for i in range(10):
+                    for str in list_du_with_some_id: # прохожусь по каждой строке
+                        if f"{key}{i}" in str: #проверю что для st1 st2 и т.д. до 9 не попали st11, st12 и т.д. если будут лейауты больше чем с 99 стадисами нужно будет поправить проверку
+                            list_du_with_some_id.remove(str) # и удаляю их если они туда попали                
+        if len(list_du_with_some_id) !=0: #на всякий случай, что все не сломалось если будет пустой массив
+            # ДЛЯ ТЕСТ ПОТОМ УДАЛТЬ СТРОЧКУ БЕЗ РЕГЕКСПА: 
+            create_study_id_dict[key]=re.sub("^.*'ns':","",max(list_du_with_some_id, key=len)).replace("\\'","'") #здесь я убираю лишнее и меняю кавычки (чтоб избежать дифа в каждом файле)
+            #create_study_id_dict[key]=max(list_du_with_some_id, key=len).replace("\\'","'") #здесь я убираю лишнее и меняю кавычки (чтоб избежать дифа в каждом файле)
+
     # из самой длинной строки массива, куда записал все вхождения по ключам с стдешниками, самая длинная строка = первый дата апдейт - т.к. больше всего весит - проверил.
     # Может быть позже придумаю как брать первый дата апдейт менее костыльно  
 
     #создаю внутри папки с лейаутом папки по каждому стадису и записываю туда первый дата апдейт в формате json
     for key,value in create_study_id_dict.items():
-        #записываем ключи в массив который возвращаем, чтоб потом по ним проходиться в тест кейсах и дифать
-        array_key.append(key)
-        #создаем нужные папки по пакетам если их нет 
         if not os.path.isdir(f'testing_data/{current_testing_package(layout)}/{layout}_nonseries/{key}'):
             os.makedirs(f'testing_data/{current_testing_package(layout)}/{layout}_nonseries/{key}')
 
         with open(f"testing_data/{current_testing_package(layout)}/{layout}_nonseries/{key}/{current_testing_env(ws_host)}.json","w+") as q:
             q.write(f'{value}')
-    return array_key
+    return list(create_study_id_dict.keys())
+
 
 #testcases
 
@@ -272,8 +278,9 @@ make all in docker container
 '''
 #PROBLEB:
 '''
-1. проблема с получением дата апдейтов по 13+стадису, посмотреть в консоли браузера - дата апдейты есть , разобраться. Сейчас туда прилетают стади комплиты
+1. проблема с получением дата апдейтов по 13+стадису, посмотреть в консоли браузера - дата апдейты есть , разобраться. Сейчас туда прилетают пустые дата апдейты
 2. сделать более читаемый вывод для нонсерии кейса сейчас не очень:
 [{'basicstudies': {'NzOOaaky_nonseries/st1': True, 'NzOOaaky_nonseries/st2': True, 'NzOOaaky_nonseries/st3': True, 'NzOOaaky_nonseries/st4': True, 'NzOOaaky_nonseries/st5': True, 'NzOOaaky_nonseries/st6': True, 'NzOOaaky_nonseries/st7': True, 'NzOOaaky_nonseries/st8': True, 'NzOOaaky_nonseries/st9': True, 'NzOOaaky_nonseries/st10': True, 'NzOOaaky_nonseries/st11': True, 'NzOOaaky_nonseries/st12': True, 'NzOOaaky_nonseries/st13': False, 'NzOOaaky_nonseries/st14': False, 'NzOOaaky_nonseries/st15': False, 'NzOOaaky_nonseries/st16': False, 'NzOOaaky': True}}]
 3. полученные файлы не распаршиваются в json, посмотреть что еще нужно убрать/заменить и использовать json дамп или лоад или что-то другое чтоб они сразу записывались в человеко читаемом виде 
+4. подпилить логику удаления повторных элементов ст1 и ст11 и т.е. сейчас сначала записываю потом прохожусь по записанному и удаляю леыве, по хорошему надо сначала удалять а потом записывать
 '''
