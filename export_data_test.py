@@ -146,7 +146,6 @@ def get_nonseries(layout,ws_host):
     '''
     Создает в директории с тестируемым пакетом директории {layout}_nonseries, внутри отдельно директории с id-шниками, внутри которых файлы стейбл и тестинг json с первым дата апдейтом
     Возвращает массив с id-шниками
-    надо применить к лейауту NzOOaaky - из пакета basicstudies, а также к вольюму + для паттерном можно будет сделать лейауты (поговрить с Ваней, если есть кейсы которые ботом не покрыть)
     '''
     browser.get(f'{beta}/chart/{layout}/?ws_host={ws_host}')
     #команда для логов включения
@@ -163,7 +162,7 @@ def get_nonseries(layout,ws_host):
             create_study_id_dict[(re.search(r"st\d+",str).group())] = "" #вылавливаем id-шник create_study и конвертим из объекта re.Match в строку(group()) r перед строкой позволяет не учитывать экранирование
         elif "'m':'du'" in str: #'m':'du' потому что просто du дает неверный результат - был баг 
             all_du.append(str)
-    # проходимся по всем записаным айдишникам(ключи) и ищем их в каждой строчке массива с дата апдейстам
+    # проходимся по всем записаным айдишникам(ключи) и ищем их в каждой строчке массива с дата апдейтам
     # все вхождения id-шника, пихаем в массив, далее проверяем что там нет левых ст11 12 и т.д. и берем из него самую большую строку и записываем как велью по ключу
     for key,value in create_study_id_dict.items():
         list_du_with_some_id = []
@@ -262,22 +261,28 @@ def start():
         result.append({"basicstudies" : basicstudies()})     
         result.append({"prostudies" : prostudies()})
         result.append({"corestudies" : corestudies()})    
-    print(f'all right! result:\n{result}')
+    print(f'all right! result:')
+    for i in result:
+        for key,value in i.items():
+            print(f'\n{key.upper()}')
+            for k,v in value.items():
+                print(f'{k} : {v}')
 start()
+
 if input("Удалить директорию testing_data? (y/n) " ) == "y" : shutil.rmtree("testing_data", ignore_errors=True)
 
 
 #TO DO:
 '''
 diff() - create usability dff mode, search good library
-def get_nonseries() - make connect to websocket and seach first du looks https://stackoverflow.com/questions/20907180/getting-console-log-output-from-chrome-with-selenium-python-api-bindings
 make all in docker container
 '''
 #PROBLEB:
 '''
 1. проблема с получением дата апдейтов по 13+стадису, посмотреть в консоли браузера - дата апдейты есть , разобраться. Сейчас туда прилетают пустые дата апдейты. Попробовал сделать 6 стадисов на чарте, все равно упорно по 4 последним прилета..т пустые дата апдейты. Очено странно
-2. сделать более читаемый вывод для нонсерии кейса сейчас не очень:
-[{'basicstudies': {'NzOOaaky_nonseries/st1': True, 'NzOOaaky_nonseries/st2': True, 'NzOOaaky_nonseries/st3': True, 'NzOOaaky_nonseries/st4': True, 'NzOOaaky_nonseries/st5': True, 'NzOOaaky_nonseries/st6': True, 'NzOOaaky_nonseries/st7': True, 'NzOOaaky_nonseries/st8': True, 'NzOOaaky_nonseries/st9': True, 'NzOOaaky_nonseries/st10': True, 'NzOOaaky_nonseries/st11': True, 'NzOOaaky_nonseries/st12': True, 'NzOOaaky_nonseries/st13': False, 'NzOOaaky_nonseries/st14': False, 'NzOOaaky_nonseries/st15': False, 'NzOOaaky_nonseries/st16': False, 'NzOOaaky': True}}]
-3. полученные файлы не распаршиваются в json, посмотреть что еще нужно убрать/заменить и использовать json дамп или лоад или что-то другое чтоб они сразу записывались в человеко читаемом виде 
-4. подпилить логику удаления повторных элементов ст1 и ст11 и т.е. сейчас сначала записываю потом прохожусь по записанному и удаляю леыве, по хорошему надо сначала удалять а потом записывать
+дополнение: поведение этой функции очень непредсказуемо: те стшники которые загружаются только при прогоне этого лейаута возвращают пустой дата апдейт при прогоне нескольких леаутов.
+Нужно разобраться что там не так - возможно проблема все таки на этапе получения логов. 
+Самое простот что можно сделать - ели массив пустой - проверка уже есть по новой запрашивать логи и выполнять все заново.
+2. полученные файлы не распаршиваются в json, посмотреть что еще нужно убрать/заменить и использовать json дамп или лоад или что-то другое чтоб они сразу записывались в человеко читаемом виде 
+3. Добавить лейауты вольбм профиля сюда и паттернов тож можно 
 '''
