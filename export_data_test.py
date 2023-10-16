@@ -27,8 +27,8 @@ if default_ws_host_input == "y":
     ws_host_dict = default_ws_host
 else:
     ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.xstaging.tv ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.xstaging.tv ")}'}
-layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko']}
-choose_case = input("Введите название тестируемого пакета, доступно: basicstudies, prostudies, corestudies.\nДля запуска всех тестов введите all\n")
+layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko'],'volumebyprice':['oZkic9r3','NrwYZWV0','pNQq7kQc','qgKoOngy','QKijwCXn','zFlp7mEL','zQE583Vn','Mtax5fMe']}
+choose_case = input("Введите название тестируемого пакета, доступно: basicstudies, prostudies, corestudies, volumebyprice.\nДля запуска всех тестов введите all\n")
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
 difmod = "simple"
 
@@ -203,6 +203,7 @@ def basicstudies():
         if i == "NzOOaaky": #это лейаут по которому нужно допом дифнуть нонсерию
             print(f'start nonseries test for {i}')
             key_id = get_nonseries(i,ws_host_dict['stable']) #создаем файловую структуру для стейбловый и сразу записываем массив айдишников, с тестингом они одинаковые (в рамках лейаута)
+            time.sleep(5) # без этого не успевает прилететь нонсерия хотя должна 
             get_nonseries(i,ws_host_dict['testing']) #и для тестовых 
             for id in key_id: 
                 basicstudies_result[f'{i}_nonseries/{id}'] = diff('basicstudies',i,nonseries=True,key = id) #также делаем диф только по каждому айдишнику который накинут на чарт 
@@ -246,6 +247,34 @@ def corestudies():
         print(f'{i} is ready. The files are identical: {corestudies_result[i]}')
     print("corestudies is ready!")
     return corestudies_result
+
+def volumebyprice():
+    '''
+    возвращает словарь: ключи лейауты, значение - диф
+    гоняет сначала нонсерию тест, потом  ехпорт дата (серия)
+    '''
+    volumebyprice_result = {}
+    print("start volumebyprice...")
+    for i in layout_dict['volumebyprice']:
+        print(f'start nonseries test for {i}')
+        key_id = get_nonseries(i,ws_host_dict['stable']) #создаем файловую структуру для стейбловый и сразу записываем массив айдишников, с тестингом они одинаковые (в рамках лейаута)
+        time.sleep(5) # без этого не успевает прилететь нонсерия хотя должна
+        get_nonseries(i,ws_host_dict['testing']) #и для тестовых 
+        for id in key_id: 
+            volumebyprice_result[f'{i}_nonseries/{id}'] = diff('volumebyprice',i,nonseries=True,key = id) #также делаем диф только по каждому айдишнику который накинут на чарт 
+            if delete_identical_files == "y" and volumebyprice_result[f'{i}_nonseries/{id}'] : shutil.rmtree(f'testing_data/volumebyprice/{i}_nonseries/{id}', ignore_errors=True)
+            print(f'стадис с id: {id} is ready! The files are identical: {volumebyprice_result[f"{i}_nonseries/{id}"]}')
+        print("nonseries test is ready!")
+    for i in layout_dict['volumebyprice']:
+        print(f'start export-data test for {i}')
+        export_data(i,ws_host_dict['stable'])
+        export_data(i,ws_host_dict['testing'])
+        volumebyprice_result[i] = diff('volumebyprice',i)
+        if delete_identical_files == "y" and volumebyprice_result[i] : shutil.rmtree(f'testing_data/volumebyprice/{i}', ignore_errors=True)
+        print(f'{i} is ready! The files are identical: {volumebyprice_result[i]}')
+    print("volumebyprice is ready!")
+    return volumebyprice_result
+
 # start
 @timer
 def start():
@@ -256,11 +285,14 @@ def start():
     if choose_case == "prostudies":
         result.append({"prostudies" : prostudies()})
     if choose_case == "corestudies":
-        result.append({"corestudies" : corestudies()})      
+        result.append({"corestudies" : corestudies()})  
+    if choose_case == "volumebyprice":
+        result.append({"volumebyprice" : volumebyprice()})    
     if choose_case == "all":
         result.append({"basicstudies" : basicstudies()})     
         result.append({"prostudies" : prostudies()})
-        result.append({"corestudies" : corestudies()})    
+        result.append({"corestudies" : corestudies()})
+        result.append({"volumebyprice" : volumebyprice()})   
     print(f'all right! result:')
     for i in result:
         for key,value in i.items():
@@ -283,6 +315,6 @@ make all in docker container
 дополнение: поведение этой функции очень непредсказуемо: те стшники которые загружаются только при прогоне этого лейаута возвращают пустой дата апдейт при прогоне нескольких леаутов.
 Нужно разобраться что там не так - возможно проблема все таки на этапе получения логов. 
 Самое простот что можно сделать - ели массив пустой - проверка уже есть по новой запрашивать логи и выполнять все заново.
-2. полученные файлы не распаршиваются в json, посмотреть что еще нужно убрать/заменить и использовать json дамп или лоад или что-то другое чтоб они сразу записывались в человеко читаемом виде 
+2. в джсон можно в конце скобочки поправить 
 3. Добавить лейауты вольбм профиля сюда и паттернов тож можно 
 '''
