@@ -27,7 +27,7 @@ if default_ws_host_input == "y":
     ws_host_dict = default_ws_host
 else:
     ws_host_dict = {"stable":f'{input("Введите стейбловый лейаут в формате dal2-studies-1-backend.xstaging.tv ")}',"testing":f'{input("Введите тестовый лейаут в формате dal2-studies-2-backend.xstaging.tv ")}'}
-layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko'],'volumebyprice':['oZkic9r3','NrwYZWV0','pNQq7kQc','qgKoOngy','QKijwCXn','zFlp7mEL','zQE583Vn','Mtax5fMe']}
+layout_dict = {'basicstudies':['GNuvT7h0','zJlhAtff','lPS6jvVP','NzOOaaky'],'prostudies':['cLj969cv','mrhfAZWq','OXQkZfTO','zpFnYlQJ','ZR9K45TE','3AeJgcoK','zdBSTJLC','uuBtLNx6'],'corestudies':['bADrHwko','4EF6I6ng','ZFHrOZyl','36eOERTU'],'volumebyprice':['oZkic9r3','NrwYZWV0','pNQq7kQc','qgKoOngy','QKijwCXn','zFlp7mEL','zQE583Vn','Mtax5fMe']}
 choose_case = input("Введите название тестируемого пакета, доступно: basicstudies, prostudies, corestudies, volumebyprice.\nДля запуска всех тестов введите all\n")
 delete_identical_files = input("Удалять одинаковые файлы? (y/n) ")
 difmod = "simple"
