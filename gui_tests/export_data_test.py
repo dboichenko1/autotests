@@ -92,8 +92,8 @@ def export_data(layout,ws_host):
         browser.find_element(By.CSS_SELECTOR,'[aria-label="Hide panel"]').click()
 
     #принимаем куки
-    if check_exists_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all"]'):
-        browser.find_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all"]').click()
+    if check_exists_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all "]'):
+        browser.find_element(By.CSS_SELECTOR,'[data-overflow-tooltip-text="Accept all "]').click()
     while check_exists_element(By.CSS_SELECTOR,'[class="loader-l31H9iuA loader-_7n3rLPY"]'): #любая загрузка стадиса
         time.sleep(1)
     #откатываемся к первой доступной дате:
