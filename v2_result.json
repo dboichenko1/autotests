@@ -51,12 +51,12 @@ case = case for
             {
                 "end": {
                     "column": 8,
-                    "line": 7
+                    "line": 6
                 },
                 "message": "Shadowing variable 'i' which exists in parent scope. Did you want to use the ':=' operator instead of '=' ?",
                 "start": {
                     "column": 2,
-                    "line": 7
+                    "line": 6
                 }
             }
         ]
@@ -551,12 +551,12 @@ case = case error
             {
                 "end": {
                     "column": 27,
-                    "line": 10
+                    "line": 9
                 },
                 "message": "Cannot call 'label.new' with argument 'text'='a'. An argument of 'series float' type was used but a 'series string' is expected.",
                 "start": {
                     "column": 27,
-                    "line": 10
+                    "line": 9
                 }
             }
         ],

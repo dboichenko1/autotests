@@ -8,11 +8,11 @@ case = case if
                 "pinePos": {
                     "end": {
                         "column": 11,
-                        "line": 6
+                        "line": 5
                     },
                     "start": {
                         "column": 27,
-                        "line": 5
+                        "line": 4
                     }
                 }
             },
@@ -21,11 +21,11 @@ case = case if
                 "pinePos": {
                     "end": {
                         "column": 11,
-                        "line": 8
+                        "line": 7
                     },
                     "start": {
                         "column": 25,
-                        "line": 7
+                        "line": 6
                     }
                 }
             },
@@ -33,12 +33,12 @@ case = case if
                 "id": "#3",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 11
+                        "column": 11,
+                        "line": 9
                     },
                     "start": {
                         "column": 9,
-                        "line": 9
+                        "line": 8
                     }
                 }
             }
@@ -48,12 +48,12 @@ case = case if
             {
                 "definition": {
                     "end": {
-                        "column": 9,
-                        "line": 11
+                        "column": 11,
+                        "line": 9
                     },
                     "start": {
                         "column": 1,
-                        "line": 5
+                        "line": 4
                     }
                 },
                 "name": "ma",
@@ -74,11 +74,11 @@ case = case switch
                 "pinePos": {
                     "end": {
                         "column": 27,
-                        "line": 6
+                        "line": 5
                     },
                     "start": {
                         "column": 11,
-                        "line": 6
+                        "line": 5
                     }
                 }
             },
@@ -87,11 +87,11 @@ case = case switch
                 "pinePos": {
                     "end": {
                         "column": 27,
-                        "line": 7
+                        "line": 6
                     },
                     "start": {
                         "column": 11,
-                        "line": 7
+                        "line": 6
                     }
                 }
             },
@@ -100,11 +100,11 @@ case = case switch
                 "pinePos": {
                     "end": {
                         "column": 27,
-                        "line": 8
+                        "line": 7
                     },
                     "start": {
                         "column": 11,
-                        "line": 8
+                        "line": 7
                     }
                 }
             },
@@ -113,11 +113,11 @@ case = case switch
                 "pinePos": {
                     "end": {
                         "column": 21,
-                        "line": 10
+                        "line": 9
                     },
                     "start": {
                         "column": 5,
-                        "line": 10
+                        "line": 9
                     }
                 }
             }
@@ -127,12 +127,12 @@ case = case switch
             {
                 "definition": {
                     "end": {
-                        "column": 9,
-                        "line": 11
+                        "column": 30,
+                        "line": 9
                     },
                     "start": {
                         "column": 1,
-                        "line": 5
+                        "line": 4
                     }
                 },
                 "name": "ma",
@@ -152,12 +152,12 @@ case = case for
                 "id": "#1",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 10
+                        "column": 16,
+                        "line": 8
                     },
                     "start": {
                         "column": 1,
-                        "line": 6
+                        "line": 5
                     }
                 }
             },
@@ -165,12 +165,12 @@ case = case for
                 "id": "#2",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 10
+                        "column": 16,
+                        "line": 8
                     },
                     "start": {
                         "column": 20,
-                        "line": 6
+                        "line": 5
                     }
                 }
             }
@@ -181,11 +181,11 @@ case = case for
                 "definition": {
                     "end": {
                         "column": 10,
-                        "line": 5
+                        "line": 4
                     },
                     "start": {
                         "column": 1,
-                        "line": 5
+                        "line": 4
                     }
                 },
                 "name": "result",
@@ -195,11 +195,11 @@ case = case for
                 "definition": {
                     "end": {
                         "column": 9,
-                        "line": 6
+                        "line": 5
                     },
                     "start": {
                         "column": 5,
-                        "line": 6
+                        "line": 5
                     }
                 },
                 "name": "i",
@@ -210,11 +210,11 @@ case = case for
                 "definition": {
                     "end": {
                         "column": 8,
-                        "line": 7
+                        "line": 6
                     },
                     "start": {
                         "column": 2,
-                        "line": 7
+                        "line": 6
                     }
                 },
                 "name": "i",
@@ -226,12 +226,12 @@ case = case for
             {
                 "end": {
                     "column": 8,
-                    "line": 7
+                    "line": 6
                 },
                 "message": "Shadowing variable 'i' which exists in parent scope. Did you want to use the ':=' operator instead of '=' ?",
                 "start": {
                     "column": 2,
-                    "line": 7
+                    "line": 6
                 }
             }
         ]
@@ -248,8 +248,8 @@ case = case while
                 "id": "#1",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 9
+                        "column": 34,
+                        "line": 8
                     },
                     "start": {
                         "column": 1,
@@ -261,8 +261,8 @@ case = case while
                 "id": "#2",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 9
+                        "column": 34,
+                        "line": 8
                     },
                     "start": {
                         "column": 22,
@@ -330,12 +330,12 @@ case = case funDef
                 ],
                 "definition": {
                     "end": {
-                        "column": 9,
-                        "line": 8
+                        "column": 13,
+                        "line": 6
                     },
                     "start": {
                         "column": 1,
-                        "line": 6
+                        "line": 5
                     }
                 },
                 "desc": [
@@ -355,12 +355,12 @@ case = case funDef
                 "id": "#1",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 8
+                        "column": 13,
+                        "line": 6
                     },
                     "start": {
                         "column": 1,
-                        "line": 6
+                        "line": 5
                     }
                 }
             }
@@ -371,11 +371,11 @@ case = case funDef
                 "definition": {
                     "end": {
                         "column": 12,
-                        "line": 6
+                        "line": 5
                     },
                     "start": {
                         "column": 4,
-                        "line": 6
+                        "line": 5
                     }
                 },
                 "name": "x",
@@ -411,8 +411,8 @@ case = definition test
                 ],
                 "definition": {
                     "end": {
-                        "column": 9,
-                        "line": 10
+                        "column": 19,
+                        "line": 9
                     },
                     "start": {
                         "column": 1,
@@ -491,8 +491,8 @@ case = definition test
                 "id": "#1",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 10
+                        "column": 19,
+                        "line": 9
                     },
                     "start": {
                         "column": 1,
@@ -506,11 +506,11 @@ case = definition test
                 "definition": {
                     "end": {
                         "column": 9,
-                        "line": 13
+                        "line": 12
                     },
                     "start": {
                         "column": 1,
-                        "line": 11
+                        "line": 10
                     }
                 },
                 "fields": [
@@ -598,11 +598,11 @@ case = case funDef overloads
                 "definition": {
                     "end": {
                         "column": 9,
-                        "line": 9
+                        "line": 7
                     },
                     "start": {
                         "column": 1,
-                        "line": 6
+                        "line": 5
                     }
                 },
                 "desc": [
@@ -632,12 +632,12 @@ case = case funDef overloads
                 ],
                 "definition": {
                     "end": {
-                        "column": 9,
-                        "line": 12
+                        "column": 16,
+                        "line": 9
                     },
                     "start": {
                         "column": 1,
-                        "line": 10
+                        "line": 8
                     }
                 },
                 "desc": [
@@ -658,11 +658,11 @@ case = case funDef overloads
                 "pinePos": {
                     "end": {
                         "column": 9,
-                        "line": 9
+                        "line": 7
                     },
                     "start": {
                         "column": 1,
-                        "line": 6
+                        "line": 5
                     }
                 }
             },
@@ -670,12 +670,12 @@ case = case funDef overloads
                 "id": "#2",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 12
+                        "column": 16,
+                        "line": 9
                     },
                     "start": {
                         "column": 1,
-                        "line": 10
+                        "line": 8
                     }
                 }
             }
@@ -686,11 +686,11 @@ case = case funDef overloads
                 "definition": {
                     "end": {
                         "column": 12,
-                        "line": 6
+                        "line": 5
                     },
                     "start": {
                         "column": 4,
-                        "line": 6
+                        "line": 5
                     }
                 },
                 "name": "x",
@@ -701,11 +701,11 @@ case = case funDef overloads
                 "definition": {
                     "end": {
                         "column": 10,
-                        "line": 10
+                        "line": 8
                     },
                     "start": {
                         "column": 4,
-                        "line": 10
+                        "line": 8
                     }
                 },
                 "name": "x",
@@ -973,11 +973,11 @@ case = case method
                 "pinePos": {
                     "end": {
                         "column": 56,
-                        "line": 32
+                        "line": 30
                     },
                     "start": {
                         "column": 29,
-                        "line": 28
+                        "line": 26
                     }
                 }
             },
@@ -986,11 +986,11 @@ case = case method
                 "pinePos": {
                     "end": {
                         "column": 94,
-                        "line": 30
+                        "line": 28
                     },
                     "start": {
                         "column": 34,
-                        "line": 29
+                        "line": 27
                     }
                 }
             },
@@ -999,11 +999,11 @@ case = case method
                 "pinePos": {
                     "end": {
                         "column": 47,
-                        "line": 32
+                        "line": 30
                     },
                     "start": {
                         "column": 13,
-                        "line": 31
+                        "line": 29
                     }
                 }
             }
@@ -1042,11 +1042,11 @@ case = case method
                 "definition": {
                     "end": {
                         "column": 20,
-                        "line": 23
+                        "line": 22
                     },
                     "start": {
                         "column": 1,
-                        "line": 23
+                        "line": 22
                     }
                 },
                 "name": "b",
@@ -1056,11 +1056,11 @@ case = case method
                 "definition": {
                     "end": {
                         "column": 15,
-                        "line": 24
+                        "line": 23
                     },
                     "start": {
                         "column": 1,
-                        "line": 24
+                        "line": 23
                     }
                 },
                 "name": "c",
@@ -1278,12 +1278,12 @@ case = case error
             {
                 "end": {
                     "column": 27,
-                    "line": 10
+                    "line": 9
                 },
                 "message": "Cannot call 'label.new' with argument 'text'='a'. An argument of 'series float' type was used but a 'series string' is expected.",
                 "start": {
                     "column": 27,
-                    "line": 10
+                    "line": 9
                 }
             }
         ],
@@ -1306,8 +1306,8 @@ case = case error
                 "id": "#2",
                 "pinePos": {
                     "end": {
-                        "column": 9,
-                        "line": 9
+                        "column": 22,
+                        "line": 8
                     },
                     "start": {
                         "column": 9,

@@ -1,5 +1,4 @@
 import requests
-import re
 import json
 from cases import cases_dict
 from cases import really_big_cases
@@ -13,22 +12,18 @@ beta_staging = "adolgov.xstaging.tv"
 beta_stable = "beta.tradingview.com"
 
 def request_translate_light(beta,version, source):
-    url = f"https://{beta}/pine-facade/translate_light?user_name=Batut&v={version}" #mbakholdin.xstaging.tv
-    headers = {
-        "Accept-Language": "en-US,en;q=0.5",
-        "Content-Type": "multipart/form-data; boundary=---------------------------106017837933037236722733296263"
-    }
-    data1 = f"-----------------------------106017837933037236722733296263\r\nContent-Disposition: form-data; name=\"source\"\r\n\r\n{source}\r\n\r\n-----------------------------106017837933037236722733296263--\r\n"
-    response = requests.post(url, headers = headers, data=data1)
+    url = f"https://{beta}/pine-facade/translate_light?user_name=Batut&v={version}"
+    data=  {'source': f'{source}'}
+    response = requests.post(url,data=data)
     return response
 
-#case 3812,3813
 
-def perf_counters(beta,version,case):
+def perf_counters(beta: str,version: str,case: list):
     start = perf_counter()
-    for key,value in case.items():
-        responce = request_translate_light(beta,version,value)
-        assert responce.status_code == 200, f'status code = {responce.status_code}\n with case = {key}\n responce = {responce.json()}'
+    for i in case:
+        for key,value in i.items():
+            responce = request_translate_light(beta,version,value)
+            assert responce.status_code == 200, f'status code = {responce.status_code}\n with case = {key}\n responce = {responce.json()}'
     stop = perf_counter()
 
     print(f"beta = {beta} version = {version}\nestimated {stop - start}\n")
@@ -45,17 +40,27 @@ def case_import(case):
         for key,value in result_dict.items(): 
             v2.write(f"case = {key}\n{json.dumps(value[1], sort_keys=True, indent=4)}\n\n")
 
-# version = ["1","2"]
-# version = ["3","2"]
-# betas = {beta_stable:version,beta_stable:version}
-# cases = [cases_dict,really_big_cases,matreshka]
-# n = 0
-# while n <=3:
-#     print(f'circle {n}: ') 
-#     for k,v in betas.items():
-#         for i in v:
-#             perf_counters(k,i,k12)
-#     n+=1
+def comp_1_2_other_betas():
+    version = ["1","2"]
+    betas = {beta_staging:version,beta_stable:version}
+    cases = [cases_dict,really_big_cases,matreshka,k12,k2]
+    n = 0
+    while n <=2:
+        print(f'circle {n}: ') 
+        for k,v in betas.items():
+            for i in v:
+                perf_counters(k,i,cases)
+        n+=1
+def comp_1_2_3_same_betas():
+    betas = {beta_staging:["1","2","3"]}
+    cases = [cases_dict,really_big_cases,matreshka,k12,k2]
+    n = 0
+    while n <=2:
+        print(f'circle {n}: ') 
+        for k,v in betas.items():
+            for i in v:
+                perf_counters(k,i,cases)
+        n+=1
 
 case_import(cases_dict)  
 
