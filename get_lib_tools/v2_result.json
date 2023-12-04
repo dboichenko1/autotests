@@ -1,0 +1,574 @@
+case = case if
+{
+    "result": {
+        "functions": [],
+        "types": [],
+        "variables": [
+            {
+                "name": "ma",
+                "type": "series int"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case switch
+{
+    "result": {
+        "functions": [],
+        "types": [],
+        "variables": [
+            {
+                "name": "ma",
+                "type": "series float"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case for
+{
+    "result": {
+        "functions": [],
+        "types": [],
+        "variables": [
+            {
+                "name": "result",
+                "type": "series int"
+            },
+            {
+                "name": "i",
+                "type": "series int"
+            },
+            {
+                "name": "i",
+                "type": "series int"
+            }
+        ],
+        "warnings": [
+            {
+                "end": {
+                    "column": 8,
+                    "line": 7
+                },
+                "message": "Shadowing variable 'i' which exists in parent scope. Did you want to use the ':=' operator instead of '=' ?",
+                "start": {
+                    "column": 2,
+                    "line": 7
+                }
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case while
+{
+    "result": {
+        "functions": [],
+        "types": [],
+        "variables": [
+            {
+                "name": "counter",
+                "type": "const int"
+            },
+            {
+                "name": "factorial",
+                "type": "const int"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case funDef
+{
+    "result": {
+        "functions": [
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series int",
+                            "simple int",
+                            "input int",
+                            "const int",
+                            "series float",
+                            "simple float",
+                            "input float",
+                            "const float"
+                        ],
+                        "displayType": "series float",
+                        "name": "x",
+                        "required": true
+                    }
+                ],
+                "desc": [
+                    "Fun from script"
+                ],
+                "name": "fun",
+                "returnedTypes": [
+                    "series float"
+                ],
+                "syntax": [
+                    "fun(series float x) \u2192 series float"
+                ]
+            }
+        ],
+        "types": [],
+        "variables": [
+            {
+                "name": "x",
+                "type": "series float"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = definition test
+{
+    "result": {
+        "functions": [
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series int",
+                            "simple int",
+                            "input int",
+                            "const int",
+                            "series float",
+                            "simple float",
+                            "input float",
+                            "const float"
+                        ],
+                        "displayType": "series float",
+                        "name": "x",
+                        "required": true
+                    }
+                ],
+                "desc": [
+                    "Fun from script"
+                ],
+                "name": "fun",
+                "returnedTypes": [
+                    "series float"
+                ],
+                "syntax": [
+                    "fun(series float x) \u2192 series float"
+                ]
+            },
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series bool",
+                            "simple bool",
+                            "input bool",
+                            "const bool"
+                        ],
+                        "displayType": "series bool",
+                        "name": "isHigh",
+                        "required": false
+                    }
+                ],
+                "name": "Pivot.new",
+                "returnedTypes": [
+                    "Pivot"
+                ],
+                "syntax": [
+                    "Pivot.new(series bool isHigh) \u2192 Pivot"
+                ]
+            },
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "Pivot"
+                        ],
+                        "displayType": "Pivot",
+                        "info": "The identifier of the object to be copied.",
+                        "name": "object",
+                        "required": true
+                    }
+                ],
+                "name": "Pivot.copy",
+                "returnedTypes": [
+                    "Pivot"
+                ],
+                "syntax": [
+                    "Pivot.copy(Pivot object) \u2192 Pivot"
+                ]
+            },
+            {
+                "args": [],
+                "name": "Pivot.copy",
+                "returnedTypes": [
+                    "Pivot"
+                ],
+                "syntax": [
+                    "copy() \u2192 Pivot"
+                ],
+                "thisType": [
+                    "Pivot"
+                ]
+            }
+        ],
+        "types": [
+            {
+                "fields": [
+                    {
+                        "name": "isHigh",
+                        "type": "series bool"
+                    }
+                ],
+                "name": "Pivot",
+                "template": false
+            }
+        ],
+        "variables": [
+            {
+                "name": "x",
+                "type": "series float"
+            },
+            {
+                "name": "x",
+                "type": "series float"
+            },
+            {
+                "name": "y",
+                "type": "series float"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case funDef overloads
+{
+    "result": {
+        "functions": [
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series int",
+                            "simple int",
+                            "input int",
+                            "const int",
+                            "series float",
+                            "simple float",
+                            "input float",
+                            "const float"
+                        ],
+                        "displayType": "series float",
+                        "name": "x",
+                        "required": true
+                    }
+                ],
+                "desc": [
+                    "float overload of fun"
+                ],
+                "name": "fun",
+                "returnedTypes": [
+                    "series float"
+                ],
+                "syntax": [
+                    "fun(series float x) \u2192 series float"
+                ]
+            },
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series int",
+                            "simple int",
+                            "input int",
+                            "const int"
+                        ],
+                        "displayType": "series int",
+                        "name": "x",
+                        "required": true
+                    }
+                ],
+                "desc": [
+                    "int overload of fun"
+                ],
+                "name": "fun",
+                "returnedTypes": [
+                    "series int"
+                ],
+                "syntax": [
+                    "fun(series int x) \u2192 series int"
+                ]
+            }
+        ],
+        "types": [],
+        "variables": [
+            {
+                "name": "x",
+                "type": "series float"
+            },
+            {
+                "name": "x",
+                "type": "series int"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case import
+{
+    "reason": "line 4: The user 'Batut' does not have a published library titled 'MyLibrar234'",
+    "reason2": {
+        "errors": [
+            {
+                "end": {
+                    "column": 26,
+                    "line": 4
+                },
+                "message": "line 4: The user 'Batut' does not have a published library titled 'MyLibrar234'",
+                "start": {
+                    "column": 8,
+                    "line": 4
+                }
+            }
+        ]
+    },
+    "result": null,
+    "success": false
+}
+
+case = case method
+{
+    "result": {
+        "functions": [
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [],
+                        "displayType": "undetermined type",
+                        "name": "int",
+                        "required": true
+                    }
+                ],
+                "name": "f",
+                "returnedTypes": [],
+                "syntax": [
+                    "f(int) \u2192 undetermined type"
+                ]
+            },
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series int",
+                            "simple int",
+                            "input int",
+                            "const int"
+                        ],
+                        "displayType": "series int",
+                        "name": "int",
+                        "required": true
+                    }
+                ],
+                "name": "method",
+                "returnedTypes": [],
+                "syntax": [
+                    "method(series int int) \u2192 undetermined type"
+                ]
+            },
+            {
+                "args": [],
+                "name": "method",
+                "originalName": "series int.method",
+                "returnedTypes": [],
+                "syntax": [
+                    "method() \u2192 undetermined type"
+                ],
+                "thisType": [
+                    "series int",
+                    "simple int",
+                    "input int",
+                    "const int"
+                ]
+            }
+        ],
+        "types": [],
+        "variables": [
+            {
+                "name": "array_close",
+                "type": "float[]"
+            },
+            {
+                "name": "a",
+                "type": "series int"
+            },
+            {
+                "name": "b",
+                "type": "simple int"
+            },
+            {
+                "name": "c",
+                "type": "const int"
+            },
+            {
+                "name": "int",
+                "type": "undetermined type"
+            },
+            {
+                "name": "int",
+                "type": "series int"
+            }
+        ],
+        "warnings": [
+            {
+                "end": {
+                    "column": 14,
+                    "line": 18
+                },
+                "message": "The `expr0` parameter of the `operator ==` function accepts a 'bool' argument. To avoid potential unexpected results, pass a 'bool' value or expression to this parameter.",
+                "start": {
+                    "column": 12,
+                    "line": 18
+                }
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case user_type
+{
+    "result": {
+        "functions": [
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "series string",
+                            "simple string",
+                            "input string",
+                            "const string"
+                        ],
+                        "displayType": "series string",
+                        "name": "a",
+                        "required": false
+                    },
+                    {
+                        "allowedTypeIDs": [
+                            "test"
+                        ],
+                        "displayType": "test",
+                        "name": "b",
+                        "required": false
+                    }
+                ],
+                "name": "test.new",
+                "returnedTypes": [
+                    "test"
+                ],
+                "syntax": [
+                    "test.new(series string a, test b) \u2192 test"
+                ]
+            },
+            {
+                "args": [
+                    {
+                        "allowedTypeIDs": [
+                            "test"
+                        ],
+                        "displayType": "test",
+                        "info": "The identifier of the object to be copied.",
+                        "name": "object",
+                        "required": true
+                    }
+                ],
+                "name": "test.copy",
+                "returnedTypes": [
+                    "test"
+                ],
+                "syntax": [
+                    "test.copy(test object) \u2192 test"
+                ]
+            },
+            {
+                "args": [],
+                "name": "test.copy",
+                "returnedTypes": [
+                    "test"
+                ],
+                "syntax": [
+                    "copy() \u2192 test"
+                ],
+                "thisType": [
+                    "test"
+                ]
+            }
+        ],
+        "types": [
+            {
+                "fields": [
+                    {
+                        "name": "a",
+                        "type": "series string"
+                    },
+                    {
+                        "name": "b",
+                        "type": "test"
+                    }
+                ],
+                "name": "test",
+                "template": false
+            }
+        ],
+        "variables": [
+            {
+                "name": "defin",
+                "type": "test"
+            },
+            {
+                "name": "str",
+                "type": "series string"
+            },
+            {
+                "name": "users",
+                "type": "test"
+            }
+        ]
+    },
+    "success": true
+}
+
+case = case error
+{
+    "result": {
+        "errors": [
+            {
+                "end": {
+                    "column": 27,
+                    "line": 10
+                },
+                "message": "Cannot call 'label.new' with argument 'text'='a'. An argument of 'series float' type was used but a 'series string' is expected.",
+                "start": {
+                    "column": 27,
+                    "line": 10
+                }
+            }
+        ],
+        "functions": [],
+        "types": [],
+        "variables": [
+            {
+                "name": "a",
+                "type": "series float"
+            }
+        ]
+    },
+    "success": true
+}
+
