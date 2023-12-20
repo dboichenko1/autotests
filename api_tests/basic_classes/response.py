@@ -1,5 +1,5 @@
 from jsonschema import validate
-from api_tests.global_enums import global_error_messages
+from global_enums import global_error_messages
 
 class Response:
 

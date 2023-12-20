@@ -1,5 +1,4 @@
 GET_LIB_V1_CSHEMA={
-  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
     "libInfo": {
@@ -50,77 +49,6 @@ GET_LIB_V1_CSHEMA={
       "properties": {
         "functions2": {
           "type": "array",
-          "items": [
-            {
-              "type": "object",
-              "properties": {
-                "docs": {
-                  "type": "array",
-                  "items": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "args": {
-                          "type": "array",
-                          "items": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "info": {
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "type": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "info",
-                                "name",
-                                "type"
-                              ]
-                            }
-                          ]
-                        },
-                        "desc": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "returnType": {
-                          "type": "string"
-                        },
-                        "syntax": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "args",
-                        "desc",
-                        "name",
-                        "returnType",
-                        "syntax"
-                      ]
-                    }
-                  ]
-                },
-                "prefix": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "docs",
-                "prefix",
-                "title"
-              ]
-            }
-          ]
         },
         "types": {
           "type": "array",
@@ -140,7 +68,6 @@ GET_LIB_V1_CSHEMA={
 }
 
 GET_LIB_V2_CSHEMA = {
-  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
     "libInfo": {
@@ -203,32 +130,6 @@ GET_LIB_V2_CSHEMA = {
                       "properties": {
                         "allowedTypeIDs": {
                           "type": "array",
-                          "items": [
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
                         },
                         "desc": {
                           "type": "string"
