@@ -1,4 +1,5 @@
 from time import perf_counter
+from functools import singledispatch
 import random
 
 def dec(f):
@@ -28,20 +29,161 @@ def puzir(array):
 @dec
 def baza(array): return sorted(array)
 
-puzir = puzir(a)
-baza = baza(a)
-if puzir == baza:
-    print("nice")
 
-print(1.45800004247576e-05 - 0.05489188900537556)
-# print(f'case puzir\n{puzir(a)}')
-
-
-# print(f'case baza\n{baza(a)}')
 
 def random_generate_list(to):
-    result = []
-    for i in range(to):
-        result.append(random.random())
+    result = [random.random() for i in range(to)]
     return result
-# print(random_generate_list(1000))
+a = random_generate_list(100000)
+@dec
+def vibor(array):
+    for i in range(len(array)):
+        min_index = i
+        for j in range(min_index,len(array)):
+            if array[j] < array[min_index]:
+                min_index = j
+        if min_index !=i:
+            array[min_index],array[i] = array[i], array[min_index]
+    return array
+
+
+@dec
+def insert(array):
+    for i in range(1,len(array)):
+        sorted = i-1
+        while sorted > -1 and array[sorted] > array[sorted+1]:
+            array[sorted], array[sorted+1] = array[sorted+1], array[sorted]
+            sorted-=1
+    return array
+
+'''
+проходимся по индексам массива начиная с первого
+принимаем нулевой элемент как уже стоящий на своем месте
+пока не дойдем до нулевого элемента блока и пока текущий элемент больше чем стоящий за ним
+меняем местами текущий и следующий за ним и уменьшая индекс отсортированного запомненного чтоб проверить наш
+новый полученный элемент с другими в нашем блоке, пока мы не дойдем до нулевого и он не будет менье чем сл за ним
+
+такая конструкция позволяет делать меньше дублирующих проходок по массиву
+'''
+
+def hoar_for_recursive(array: list, left: int, right: int):
+    middle = array[(left+right)//2]
+    while left <= right:
+        while array[left] < middle: left +=1
+        while array[right] > middle: right -=1
+        if left <= right:
+            array[left], array[right] = array[right], array[left]
+            left +=1
+            right -=1
+    return left
+
+def hoar(array: list, start: int, end: int):
+    if start >= end: return array
+    right_start = hoar_for_recursive(array,start,end)
+    hoar(array,start,right_start-1)
+    hoar(array,right_start,end)
+
+@dec
+def hoar_start(array: list):
+    hoar(array,0,len(array)-1)
+    return array
+
+'''
+если кратко - находим опорную точку и рекурсивно сортируем 
+полученные справа и слева массивы идя от границ к опорной точке
+сортируем сравнивая с опорным и перенося в категорию (массив справа, массив слева по результату сравнения)
+
+
+находим опорную точку - по середине
+пока левый элемент меньше чем правый
+идем от начала и от конца массива к опорной точке, до первого элемента больше и меньше соответсвенно относительно опорного
+если мы не перескочили левой точкой правую, меняем местами левый элемент и правый 
+увеличиваем левый уменьшаем правый и продолжаем
+потом внутри полученных массивов вызываем себя еще раз, до тех пор, пока не перескочим левой точкой правую
+'''
+
+
+def lomuto_partition(arr, low, high):
+    pivot = arr[high]
+    i = low
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    arr[i], arr[high] = arr[high], arr[i]
+    return i
+
+@dec
+def lomuto_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    stack = [(0, len(arr) - 1)] #кладем пары в массив
+
+    while stack:
+        low, high = stack.pop() #pop удаляет последний элемент и возвращает его, если массив пуст вернет ошибку, но у нас есть на это проверка выше вернетя пара элементов
+        if low < high:
+            pivot_index = lomuto_partition(arr, low, high) #проходимся от лов то хай, образуя подмассив больше опороного и меньше , 
+            stack.append((low, pivot_index - 1))
+            stack.append((pivot_index + 1, high))
+    return arr
+
+'''
+здесь опорный элемент всегда последний элемент массива
+
+Разделение на подмассивы: Массив разделяется на два подмассива. Левый подмассив содержит элементы, меньшие или равные опорному, а правый - элементы, большие опорного.
+
+Рекурсивная сортировка подмассивов: Процесс сортировки рекурсивно применяется к обоим подмассивам.
+
+Объединение: Поскольку элементы в левом подмассиве уже меньше или равны опорному, а элементы в правом подмассиве больше опорного, нам просто нужно объединить левый подмассив, опорный элемент и правый подмассив.
+'''
+
+puzir = puzir(a) # 0.05699
+vibor = vibor(a) # 0.02383
+insert = insert(a) # 0.0001
+baza = baza(a) # 2e-05
+hoar = hoar_start(a) #0.00093
+lomuto = lomuto_sort(a) #0.03873
+
+if puzir == baza == vibor ==insert == hoar == lomuto:
+    print("nice")
+print(f'baza - puzir = {2e-05 - 0.05699}')
+print(f'baza - vibor = {2e-05 - 0.02383}')
+print(f'baza - insert = {2e-05 - 0.0001}')
+print(f'baza - hoar = {2e-05 - 0.00093}')
+print(f'baza - lomuto = {2e-05 - 0.03873}')
+print(f'puzir - vibor = {0.05699 - 0.02383}')
+print(f'vibor - insert = {0.02383 - 0.0001}')
+print(f'insert - hoar = {0.0001 - 0.00093}')
+print(f'insert - lomuto = {0.00093 - 0.03873}')
+
+
+
+class Cat():
+  def __init__(self, breed, color, age):
+     self._breed = breed
+     self._color = color
+     self._age = age
+
+  @property
+  def breed(self):
+    return self._breed
+    
+  @property
+  def color(self):
+    return self._color
+    
+  @property
+  def age(self):
+    return self._age
+  
+  @age.setter
+  def age(self, new_age):
+    if new_age > self._age:
+      self._age = new_age
+    return self._age
+  
+
+b = Cat.breed(3)
+print
