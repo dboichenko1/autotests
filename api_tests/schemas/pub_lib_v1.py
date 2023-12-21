@@ -39,13 +39,13 @@ class Functions2Item(BaseModel):
 
 
 class Field(BaseModel):
-    desc: str
+    desc: Optional[str] = None
     name: str
     type: str
 
 
 class Doc1(BaseModel):
-    desc: str
+    desc: str = None
     fields: List[Field]
     name: str
 

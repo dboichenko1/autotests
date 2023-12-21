@@ -23,13 +23,14 @@ class Arg(BaseModel):
     name: str
     required: bool
     desc: Optional[str] = None
+    desc: Optional[str] = None
 
 
 class Function(BaseModel):
     args: List[Arg]
     libId: str
     name: str
-    returnedTypes: List[str]
+    returnedTypes: List[str] = None
     syntax: List[str]
     thisType: Optional[List[str]] = None
     desc: Optional[List[str]] = None
@@ -37,13 +38,14 @@ class Function(BaseModel):
 
 
 class Field(BaseModel):
-    desc: List[str]
+    desc: List[str] = None
+    desc: List[Optional[str]] = None
     name: str
     type: str
 
 
 class Type(BaseModel):
-    desc: List[str]
+    desc: List[str] = None
     fields: List[Field]
     libId: str
     name: str
