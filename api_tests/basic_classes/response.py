@@ -24,8 +24,8 @@ class Response:
         schema.parse_obj(self.response_json)
 
     # можно сделать так, тогда не нужно в глобал енамс делать лямбду. Нужно в ассерте возвращать self
-    # def __str__(self):
-    #     return (f'\nExpected = {self.expected}\n\n'
-    #             f'status code = {self.response_status_code}\n'
-    #             f'Request url = {self.response.url}\n'
-    #             f'Responce body = {self.response_status_code}')
+    def __str__(self):
+        return (f'\nExpected = {self.expected}\n\n'
+                f'status code = {self.response_status_code}\n'
+                f'Request url = {self.response.url}\n'
+                f'Responce body = {self.response_status_code}')
