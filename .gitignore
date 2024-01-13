@@ -1,8 +1,7 @@
 /api_tests/allureress/
-/api_tests/__pycache__
-.idea/
+/.idea/
 /unit/
-get_lib_tools/
-env_test/
-my/
-/gui_tests/cookies.pkl/
+/get_lib_tools/
+/env_test/
+/my/
+/gui_tests/cookies.pkl
