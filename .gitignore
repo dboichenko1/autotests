@@ -1,7 +1,2 @@
 /api_tests/allureress/
-/.idea/
-/unit/
-/get_lib_tools/
-/env_test/
 /my/
-/gui_tests/cookies.pkl
