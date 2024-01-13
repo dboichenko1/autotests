@@ -5,4 +5,4 @@
 get_lib_tools/
 env_test/
 my/
-gui_tests/cookies.pkl
+/gui_tests/cookies.pkl
