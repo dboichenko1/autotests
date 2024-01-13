@@ -5,7 +5,7 @@ from basic_classes.response import Response
 from schemas.pub_lib_v1 import Model_V1
 from schemas.pub_lib_v2 import Model_v2
 
-
+from api_tests.global_enums import Statuses
 def test_get_lib_export_data(parse_version):
     '''
     для parse_version проверка статус кода + для 1 и 2 валидация полей jsonа из ответа
@@ -16,7 +16,6 @@ def test_get_lib_export_data(parse_version):
             if version == 3:
                 Response(req).assert_status_code(200)
             else: Response(req).assert_status_code(200).validate(Model_V1 if version == 1 else Model_v2)
-    print("test")
 @pytest.mark.dev
 @pytest.mark.parametrize("first_param, second_param, result",[
     (1,2,4),
@@ -98,3 +97,19 @@ def test_with_example_new_bilder(get_player_generator,localizations,loc):
     PASSED          [100%]{'balance': 0, 'avatar': 'https://google.com/', 'account_status': 'ACTIVE', 'localize': {'en': {'nickname': 'Gwendolyn'}, 'ru': {'nickname': 'Зоя'}, 'ar': {'nickname': 'مسلم'}}}
     '''
 
+from schemas.computer import Computer
+from examples import computer
+
+def test_pydantic_object():
+    comp = Computer.parse_obj(computer) #теперь через точку можно добраться к любому параметру в объекте
+    print(comp.detailed_info)
+    print(comp.detailed_info.physical.photo)
+    '''
+    здесь можно ассертами добить изщренные кейсы, чтоб не тулить все это в схему
+    '''
+    print(comp.detailed_info.physical.color.as_hex) #можно получить хекс цвета
+
+@pytest.mark.parametrize("status",Statuses)
+def test_with_auto_Statuses_parsing(status,get_player_generator):
+    object_to_send = get_player_generator.set_status(status).build()
+    print(object_to_send)
