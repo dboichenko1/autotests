@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="test pycharm">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env_test/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env_test/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env_test/salam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_lib_tools/cases.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_lib_tools/get_lib.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_lib_tools/translate_light.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit/start.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my/calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/my/neponatno_chto/calculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my/sortirovki.py" beforeDir="false" afterPath="$PROJECT_DIR$/my/sortirovki/sortirovki.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +61,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my/neponatno_chto" />
+      <recent name="$PROJECT_DIR$/my/sortirovki" />
       <recent name="$PROJECT_DIR$/my" />
     </key>
   </component>
@@ -219,7 +216,31 @@
       <option name="project" value="LOCAL" />
       <updated>1705133400969</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133585766</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133585766</updated>
+    </task>
+    <task id="LOCAL-00014" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133670462</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133670462</updated>
+    </task>
+    <task id="LOCAL-00015" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133738327</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133738327</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
