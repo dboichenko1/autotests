@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="test pycharm" />
+    <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="test pycharm">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env_test/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env_test/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env_test/salam.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_lib_tools/cases.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_lib_tools/get_lib.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_lib_tools/translate_light.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit/start.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +179,47 @@
       <option name="project" value="LOCAL" />
       <updated>1705133055689</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133134723</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133134723</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133170147</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133170147</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133198167</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133198167</updated>
+    </task>
+    <task id="LOCAL-00011" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133298900</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133298900</updated>
+    </task>
+    <task id="LOCAL-00012" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705133400969</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705133400969</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
