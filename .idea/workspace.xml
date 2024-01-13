@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="test pycharm">
+      <change afterPath="$PROJECT_DIR$/sd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -47,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Python tests.Python tests for somefing_test.test_parametrize_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_with_example_new_bilder.executor": "Run",
     "Python.salam.executor": "Run",
@@ -132,7 +134,23 @@
       <option name="project" value="LOCAL" />
       <updated>1705131904023</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705132123054</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705132123054</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test pycharm">
+      <option name="closed" value="true" />
+      <created>1705132204603</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705132204603</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
