@@ -77,7 +77,7 @@ def authorization():
     #простая авторизация из куков под батутом
     browser.get(beta)
 
-    cookies = pickle.load(open("cookies.pkl", "rb"))
+    cookies = pickle.load(open("cred/cookies.pkl", "rb"))
     for cookie in cookies:
         browser.add_cookie(cookie)
 
