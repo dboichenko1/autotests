@@ -1,4 +1,4 @@
-api_tests/allureress/
+/api_tests/allureress/
 /api_tests/__pycache__
 .idea/
 /unit/
