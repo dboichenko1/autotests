@@ -26,12 +26,12 @@
 
 from pydantic import BaseModel
 from pydantic.types import PastDate,FutureDate
-from api_tests.global_enums import Statuses
+from global_enums import Statuses
 from pydantic.networks import IPv4Address,IPv6Address
 
-from api_tests.schemas.detailedInfo import DetailedInfo
+from schemas.detailedInfo import DetailedInfo
 
-from api_tests.examples import computer
+from examples import computer
 
 class Computer(BaseModel):
     id: int

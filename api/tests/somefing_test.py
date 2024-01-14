@@ -1,11 +1,11 @@
 import pytest
 import requests
-from api_tests.configuration import get_lib_forms,pub_libs
-from api_tests.basic_classes.response import Response
-from api_tests.schemas.pub_lib_v1 import Model_V1
-from api_tests.schemas.pub_lib_v2 import Model_v2
+from api.configuration import get_lib_forms,pub_libs
+from api.basic_classes.response import Response
+from api.schemas.pub_lib_v1 import Model_V1
+from api.schemas.pub_lib_v2 import Model_v2
 
-from api_tests.global_enums import Statuses
+from api.global_enums import Statuses
 def test_get_lib_export_data(parse_version):
     '''
     для parse_version проверка статус кода + для 1 и 2 валидация полей jsonа из ответа
@@ -62,7 +62,7 @@ def test_with_generator_example_delete_field(delete_key,get_player_generator):
     PASSED [100%]{'balance': 0, 'avatar': 'https://google.com/', 'account_status': 'ACTIVE'}
     '''
 
-from api_tests.generators.player_localizations import PLayerLocalization
+from api.generators.player_localizations import PLayerLocalization
 def test_with_change_generator(get_player_generator):
     object_to_send = get_player_generator.update_inner_generator(
         'localize',PLayerLocalization('fr_FR')
@@ -97,8 +97,8 @@ def test_with_example_new_bilder(get_player_generator,localizations,loc):
     PASSED          [100%]{'balance': 0, 'avatar': 'https://google.com/', 'account_status': 'ACTIVE', 'localize': {'en': {'nickname': 'Gwendolyn'}, 'ru': {'nickname': 'Зоя'}, 'ar': {'nickname': 'مسلم'}}}
     '''
 
-from api_tests.schemas.computer import Computer
-from api_tests.examples import computer
+from api.schemas.computer import Computer
+from api.examples import computer
 
 def test_pydantic_object():
     comp = Computer.parse_obj(computer) #теперь через точку можно добраться к любому параметру в объекте
@@ -120,7 +120,7 @@ def test_with_auto_Statuses_parsing(status,get_player_generator):
 # '''
 # ПРИМЕРЫ ТЕСТОВ С ТАБЛИЦА - РАБОТАТЬ НЕ БУДУТ, Т.К. НАДО ВАЛИДНУЮ ССЫЛКУ К БАЗЕ ВСТАВИТЬ В CONNECTION_ROW
 # '''
-# import api_tests.tables as tables
+# import tables as tables
 #
 #
 #

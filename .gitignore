@@ -1,4 +1,5 @@
-/api_tests/allureress/
+/api/allureress/
 /my/
 /.idea/
 /gui_tests/cred/
+/api/.idea/

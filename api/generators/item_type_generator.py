@@ -1,4 +1,4 @@
-# from api_tests.basic_classes.builder import BuilderBaseClass
+# from api.basic_classes.builder import BuilderBaseClass
 # from faker import Faker
 #
 # fake = Faker()

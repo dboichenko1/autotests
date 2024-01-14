@@ -5,15 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="global pydantic improve">
-      <change afterPath="$PROJECT_DIR$/api_tests/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_tests/generators/item_type_generator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_tests/tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_tests/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_tests/examples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/generators/players.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_tests/generators/players.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/somefing_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_tests/tests/somefing_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/basic_classes/builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/basic_classes/pyenum.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/pyenum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/basic_classes/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/examples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/generators/item_type_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/item_type_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/generators/player_localizations.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/player_localizations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/generators/players.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/players.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/global_enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/global_enums.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/api/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/schemas/computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/computer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/schemas/detailedInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/detailedInfo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/schemas/owners.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/owners.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/schemas/physical.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/physical.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/schemas/pub_lib_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/pub_lib_v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/schemas/pub_lib_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/pub_lib_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_tests/tests/somefing_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/somefing_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +68,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Python tests.Python tests for api_tests.tests.somefing_test.test_parametrize_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_get_lib_export_data.executor": "Run",
     "Python tests.Python tests for somefing_test.test_parametrize_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_pydantic_object.executor": "Run",
@@ -83,88 +97,88 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Python tests for api_tests.tests.somefing_test.test_parametrize_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for api.tests.somefing_test.test_parametrize_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api_tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api_tests.tests.somefing_test.test_parametrize_example&quot;" />
+      <option name="_new_target" value="&quot;api.tests.somefing_test.test_parametrize_example&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for api_tests.tests.somefing_test.test_pydantic_object" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for api.tests.somefing_test.test_pydantic_object" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api_tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api_tests.tests.somefing_test.test_pydantic_object&quot;" />
+      <option name="_new_target" value="&quot;api.tests.somefing_test.test_pydantic_object&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for api_tests.tests.somefing_test.test_with_auto_Statuses_parsing" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for api.tests.somefing_test.test_with_auto_Statuses_parsing" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api_tests/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api_tests.tests.somefing_test.test_with_auto_Statuses_parsing&quot;" />
+      <option name="_new_target" value="&quot;api.tests.somefing_test.test_with_auto_Statuses_parsing&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for api_tests.tests.somefing_test.test_with_example_new_bilder" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for api.tests.somefing_test.test_with_example_new_bilder" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api_tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api_tests.tests.somefing_test.test_with_example_new_bilder&quot;" />
+      <option name="_new_target" value="&quot;api.tests.somefing_test.test_with_example_new_bilder&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for api_tests.tests.somefing_test.test_with_generator_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for api.tests.somefing_test.test_with_generator_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api_tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api_tests.tests.somefing_test.test_with_generator_example&quot;" />
+      <option name="_new_target" value="&quot;api.tests.somefing_test.test_with_generator_example&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for api_tests.tests.somefing_test.test_with_auto_Statuses_parsing" />
-        <item itemvalue="Python tests.Python tests for api_tests.tests.somefing_test.test_with_example_new_bilder" />
-        <item itemvalue="Python tests.Python tests for api_tests.tests.somefing_test.test_pydantic_object" />
-        <item itemvalue="Python tests.Python tests for api_tests.tests.somefing_test.test_parametrize_example" />
-        <item itemvalue="Python tests.Python tests for api_tests.tests.somefing_test.test_with_generator_example" />
+        <item itemvalue="Python tests.Python tests for api.tests.somefing_test.test_parametrize_example" />
+        <item itemvalue="Python tests.Python tests for api.tests.somefing_test.test_with_auto_Statuses_parsing" />
+        <item itemvalue="Python tests.Python tests for api.tests.somefing_test.test_with_example_new_bilder" />
+        <item itemvalue="Python tests.Python tests for api.tests.somefing_test.test_pydantic_object" />
+        <item itemvalue="Python tests.Python tests for api.tests.somefing_test.test_with_generator_example" />
       </list>
     </recent_temporary>
   </component>

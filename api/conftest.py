@@ -1,4 +1,4 @@
-from api_tests.generators.players import Player
+from generators.players import Player
 import pytest
 
 
@@ -47,7 +47,7 @@ def get_player_generator():
 # def get_add_method():
 #     return add_method #возвращает его как объект
 #
-# from api_tests.generators.item_type_generator import ItemsTypeBuilder
+# from api.generators.item_type_generator import ItemsTypeBuilder
 #
 # @pytest.fixture
 # def get_item_type_generator():
