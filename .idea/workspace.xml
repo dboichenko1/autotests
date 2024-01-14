@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="global pydantic improve">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/basic_classes/builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/builder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/basic_classes/pyenum.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/pyenum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/basic_classes/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/response.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/examples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/generators/item_type_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/item_type_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/generators/player_localizations.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/player_localizations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/generators/players.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/players.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/global_enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/global_enums.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/api/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/schemas/computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/computer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/schemas/detailedInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/detailedInfo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/schemas/owners.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/owners.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/schemas/physical.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/physical.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/schemas/pub_lib_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/pub_lib_v1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/schemas/pub_lib_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schemas/pub_lib_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_tests/tests/somefing_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/somefing_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +21,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
