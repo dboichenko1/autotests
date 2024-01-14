@@ -1,9 +1,9 @@
 import pytest
 import requests
-from configuration import get_lib_forms,pub_libs
-from basic_classes.response import Response
-from schemas.pub_lib_v1 import Model_V1
-from schemas.pub_lib_v2 import Model_v2
+from api_tests.configuration import get_lib_forms,pub_libs
+from api_tests.basic_classes.response import Response
+from api_tests.schemas.pub_lib_v1 import Model_V1
+from api_tests.schemas.pub_lib_v2 import Model_v2
 
 from api_tests.global_enums import Statuses
 def test_get_lib_export_data(parse_version):
@@ -62,7 +62,7 @@ def test_with_generator_example_delete_field(delete_key,get_player_generator):
     PASSED [100%]{'balance': 0, 'avatar': 'https://google.com/', 'account_status': 'ACTIVE'}
     '''
 
-from generators.player_localizations import PLayerLocalization
+from api_tests.generators.player_localizations import PLayerLocalization
 def test_with_change_generator(get_player_generator):
     object_to_send = get_player_generator.update_inner_generator(
         'localize',PLayerLocalization('fr_FR')
@@ -97,8 +97,8 @@ def test_with_example_new_bilder(get_player_generator,localizations,loc):
     PASSED          [100%]{'balance': 0, 'avatar': 'https://google.com/', 'account_status': 'ACTIVE', 'localize': {'en': {'nickname': 'Gwendolyn'}, 'ru': {'nickname': 'Зоя'}, 'ar': {'nickname': 'مسلم'}}}
     '''
 
-from schemas.computer import Computer
-from examples import computer
+from api_tests.schemas.computer import Computer
+from api_tests.examples import computer
 
 def test_pydantic_object():
     comp = Computer.parse_obj(computer) #теперь через точку можно добраться к любому параметру в объекте
@@ -113,3 +113,50 @@ def test_pydantic_object():
 def test_with_auto_Statuses_parsing(status,get_player_generator):
     object_to_send = get_player_generator.set_status(status).build()
     print(object_to_send)
+
+
+
+
+# '''
+# ПРИМЕРЫ ТЕСТОВ С ТАБЛИЦА - РАБОТАТЬ НЕ БУДУТ, Т.К. НАДО ВАЛИДНУЮ ССЫЛКУ К БАЗЕ ВСТАВИТЬ В CONNECTION_ROW
+# '''
+# import api_tests.tables as tables
+#
+#
+#
+# def test_get_data_films(get_db_session):
+#     '''
+#     пример селекта чего то из базы
+#     '''
+#     data = get_db_session.query(tables.Films).first()
+#     print(data.title) #так можно получать данные из базы
+#
+# def test_try_to_delete_something(get_delete_method,get_db_session):
+#     '''
+#     пример использования метода для удаления чего из базы
+#     '''
+#     get_delete_method(get_db_session,tables.ItemType,(tables.ItemType.item_id==3))
+#
+# def test_try_to_add_testdata(get_db_session,get_add_method):
+#     '''
+#     пример использования метода для добавления чего из базы
+#     '''
+#     new_item_type = {"item_tye" : "NY_NEW_TYPE"} #что добавляем, по описанной нами модели - в частности названия полей должны совпадать
+#     item = tables.ItemType(**new_item_type) #распаковываем
+#     get_add_method(get_db_session,item)
+#     print(item.item_id) #здесь поулчим id элемента который добавили
+#
+# def test_auto_add_testdata(get_db_session,get_add_method,get_item_type_generator):
+#     '''
+#     пример использования метода для добавления чего из базы + билдера объектов
+#     '''
+#     item = tables.ItemType(**get_item_type_generator.build()) #распаковываем
+#     get_add_method(get_db_session,item)
+#     print(item.item_id) #здесь поулчим id элемента который добавили
+#
+# def test_try_to_add_testdata(generate_item_type):
+#     '''
+#     пример использования комбинированной фикстуры, здесь мы создаем запись в дате - выполняем тест
+#     в нашем случае просто принтим айди и сразу удаляем запись
+#     '''
+#     print(generate_item_type.item_id)

@@ -18,3 +18,56 @@ computer = {
         }]
     }
 }
+
+#
+# from db import session
+#
+# import tables #удобный способ для взаимодействия со всеми таблицами
+# #единственный нюанс, если в другом микросервисе проекта будет таблица с таким же названием, придется разбивать на разыне файлы
+#
+# result = session.query(tables.Films.film_id, tables.Films.title).first()
+# result1 = session.query(tables.Films.film_id, tables.Films.title).all()
+# result2 = session.query(tables.Films.film_id, tables.Films.title).one_or_none()
+# '''
+# .first() - возвращает первый результат
+# .all() - возвращает все результаты (в виде массива таплов)
+# .one_or_none() - должен соответствовать конретному условию и вернет либо его, либо ничего (возвращает в виде тапла)
+# '''
+# #пример как работают фильтры
+# result3 = session.query(tables.Films.film_id, tables.Films.title).filter(tables.Films.film_id==180).one_or_none()
+# #использование нескольких фильтров
+# result4 = session.query(tables.Films.film_id, tables.Films.title).filter(
+#     tables.Films.film_id > 100,
+#     tables.Films.film_id < 150
+# ).all()
+#
+# #запринтив такое можно посмотреть какой sql запрос сгенерен
+# film_ids = session.query(tables.Films.film_id).filter(tables.Films.film_id > 180).subquery()
+#
+# #использоавли результат отдного фильтра в другом
+# result5 = session.query(tables.Films.title).filter(tables.Films.film_id.in_(film_ids)).all()
+#
+# # сделать сортировку
+# film_ids1 = session.query(
+#     tables.Films.film_id,
+#     tables.Films.title
+# ).order_by(tables.Films.film_id).all()
+#
+# #для того чтоб сделать в обратном порядке
+# from sqlalchemy.sql.expression import desc
+# film_ids2 = session.query(
+#     tables.Films.film_id,
+#     tables.Films.title
+# ).order_by(desc(tables.Films.film_id)).all()
+#
+# #лимитировать выборку
+# film_ids3 = session.query(
+#     tables.Films.film_id,
+#     tables.Films.title
+# ).order_by(desc(tables.Films.film_id)).limit(1).all()
+#
+# #пропускать определенного количество элементов
+# film_ids4 = session.query(
+#     tables.Films.film_id,
+#     tables.Films.title
+# ).order_by(desc(tables.Films.film_id)).limit(1).offset(1).all()
