@@ -159,4 +159,4 @@ def test_with_auto_Statuses_parsing(status,get_player_generator):
 #     пример использования комбинированной фикстуры, здесь мы создаем запись в дате - выполняем тест
 #     в нашем случае просто принтим айди и сразу удаляем запись
 #     '''
-#     print(generate_item_type.item_id)
+#     print(generate_item_type.item_id) da
