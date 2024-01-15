@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/api/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="add docker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/basic_classes/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/basic_classes/response.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/generators/player_localizations.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/player_localizations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/generators/players.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/players.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/tests/somefing_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/somefing_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +52,7 @@
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Python tests.Python tests for api_tests.tests.somefing_test.test_parametrize_example.executor": "Run",
+    "Python tests.Python tests for somefing_test.test_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_get_lib_export_data.executor": "Run",
     "Python tests.Python tests for somefing_test.test_parametrize_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_pydantic_object.executor": "Run",
@@ -82,7 +80,7 @@
       <recent name="$PROJECT_DIR$/my/neponatno_chto" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for api.somefing_test.test_parametrize_example">
+  <component name="RunManager" selected="Python tests.Python tests for somefing_test.test_example">
     <configuration name="Python tests for api.somefing_test.test_parametrize_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
@@ -95,21 +93,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;api.somefing_test.test_parametrize_example&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for api.somefing_test.test_pydantic_object" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="autotests" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api.somefing_test.test_pydantic_object&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -143,28 +126,43 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for api.somefing_test.test_with_generator_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for somefing_test.test_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api.somefing_test.test_with_generator_example&quot;" />
+      <option name="_new_target" value="&quot;somefing_test.test_example&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for somefing_test.test_with_auto_Statuses_parsing" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="autotests" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;somefing_test.test_with_auto_Statuses_parsing&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for somefing_test.test_example" />
+        <item itemvalue="Python tests.Python tests for somefing_test.test_with_auto_Statuses_parsing" />
         <item itemvalue="Python tests.Python tests for api.somefing_test.test_parametrize_example" />
         <item itemvalue="Python tests.Python tests for api.somefing_test.test_with_auto_Statuses_parsing" />
         <item itemvalue="Python tests.Python tests for api.somefing_test.test_with_example_new_bilder" />
-        <item itemvalue="Python tests.Python tests for api.somefing_test.test_pydantic_object" />
-        <item itemvalue="Python tests.Python tests for api.somefing_test.test_with_generator_example" />
       </list>
     </recent_temporary>
   </component>
@@ -392,7 +390,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705241510906</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="add docker">
+      <option name="closed" value="true" />
+      <created>1705356024848</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1705356024848</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -410,6 +416,7 @@
     <MESSAGE value="test pycharm" />
     <MESSAGE value="global pydantic improve" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="add docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="add docker" />
   </component>
 </project>

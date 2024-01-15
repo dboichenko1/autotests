@@ -1,5 +1,5 @@
-from generators.player_localizations import PLayerLocalization
-from basic_classes.builder import BuilderBaseClass
+from api.generators.player_localizations import PLayerLocalization
+from api.basic_classes.builder import BuilderBaseClass
 
 
 class Player(BuilderBaseClass):

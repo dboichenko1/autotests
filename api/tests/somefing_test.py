@@ -161,3 +161,21 @@ def test_with_auto_Statuses_parsing(status,get_player_generator):
 #     в нашем случае просто принтим айди и сразу удаляем запись
 #     '''
 #     print(generate_item_type.item_id) da
+
+
+# class Niga():
+#     def __init__(self,a,b):
+#         self.a = a
+#         self.b = b
+#
+#     def __str__(self):
+#         return f'{self.a} and {self.b}'
+#
+#
+# @pytest.mark.parametrize("lists",[
+#     Niga(1,2)
+# ],ids=str
+# )
+# @pytest.mark.prod
+# def test_example(lists):
+#     print(lists)

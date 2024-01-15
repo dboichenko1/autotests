@@ -1,4 +1,4 @@
-from generators.players import Player
+from api.generators.players import Player
 import pytest
 
 
