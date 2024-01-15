@@ -1,5 +1,5 @@
 # from jsonschema import validate
-from global_enums import global_error_messages
+from api.global_enums import global_error_messages
 
 class Response:
     def __init__(self,response,v = 1):

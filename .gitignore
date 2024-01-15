@@ -3,3 +3,4 @@
 /.idea/
 /api/.idea/
 /gui/cred/
+__pycache__/
