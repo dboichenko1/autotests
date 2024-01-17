@@ -7,8 +7,7 @@
     <list default="true" id="23931926-5f2d-4b0d-8d57-36d5c51a3995" name="Changes" comment="add docker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/generators/player_localizations.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/player_localizations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/generators/players.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/generators/players.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/api/pytest.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/tests/somefing_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/tests/somefing_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +53,7 @@
     "Python tests.Python tests for api_tests.tests.somefing_test.test_parametrize_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_get_lib_export_data.executor": "Run",
+    "Python tests.Python tests for somefing_test.test_param.executor": "Run",
     "Python tests.Python tests for somefing_test.test_parametrize_example.executor": "Run",
     "Python tests.Python tests for somefing_test.test_pydantic_object.executor": "Run",
     "Python tests.Python tests for somefing_test.test_with_auto_Statuses_parsing.executor": "Run",
@@ -80,7 +80,7 @@
       <recent name="$PROJECT_DIR$/my/neponatno_chto" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for somefing_test.test_example">
+  <component name="RunManager" selected="Python tests.Python tests for somefing_test.test_param">
     <configuration name="Python tests for api.somefing_test.test_parametrize_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
@@ -111,21 +111,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for api.somefing_test.test_with_example_new_bilder" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="autotests" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;api.somefing_test.test_with_example_new_bilder&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests for somefing_test.test_example" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="autotests" />
       <option name="ENV_FILES" value="" />
@@ -138,6 +123,21 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;somefing_test.test_example&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for somefing_test.test_param" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="autotests" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;somefing_test.test_param&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -158,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for somefing_test.test_param" />
         <item itemvalue="Python tests.Python tests for somefing_test.test_example" />
         <item itemvalue="Python tests.Python tests for somefing_test.test_with_auto_Statuses_parsing" />
         <item itemvalue="Python tests.Python tests for api.somefing_test.test_parametrize_example" />
         <item itemvalue="Python tests.Python tests for api.somefing_test.test_with_auto_Statuses_parsing" />
-        <item itemvalue="Python tests.Python tests for api.somefing_test.test_with_example_new_bilder" />
       </list>
     </recent_temporary>
   </component>

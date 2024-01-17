@@ -163,6 +163,8 @@ def test_with_auto_Statuses_parsing(status,get_player_generator):
 #     print(generate_item_type.item_id) da
 
 
+
+'''FISHKI'''
 # class Niga():
 #     def __init__(self,a,b):
 #         self.a = a
@@ -179,3 +181,16 @@ def test_with_auto_Statuses_parsing(status,get_player_generator):
 # @pytest.mark.prod
 # def test_example(lists):
 #     print(lists)
+
+# @pytest.mark.prod
+# @pytest.mark.parametrize("param_testing",[1],indirect=True)
+# def test_param(param_testing):
+#     pass
+
+# @pytest.mark.prod
+# def test_magic_method(get_magic_method):
+#     print(get_magic_method([4]))
+
+# @pytest.mark.prod
+# def test_getting_env(getting_env):
+#     print(getting_env)

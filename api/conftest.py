@@ -69,3 +69,46 @@ def get_player_generator():
 #     get_add_method(get_db_session,item)
 #     yield item
 #     get_delete_method(get_db_session,tables.ItemType,(tables.ItemType.item_id == item.item_id))
+
+
+
+'''FISHKI'''
+
+# @pytest.fixture
+# def param_testing(request):
+#     if request.param == 1:
+#          print("first")
+#     else:
+#         return "second"
+
+# @pytest.fixture
+# def get_magic_method(parse_version):
+#     """
+#     Пример фикстуры которая возвращает метод как объект в автотест и при этом
+#     сохраняет контекст. Обратите внимание на параметры которые принимает
+#     фикстура, это совсем другая фикстура, результат который мы используем в
+#     методе который возвращаем.
+#     """
+#     print(f"Polychili chislo bratik {parse_version}")
+#     def _wrapped(additional_number):
+#         return additional_number + parse_version
+#     return _wrapped
+#
+# def pytest_addoption(parser):
+#     """
+#     Этот метод добавляет к стандартным ключам запуска, кастомные ключи, которые
+#     вы можете указать ниже.
+#     """
+#     parser.addoption(
+#         '--env',
+#         default='prod',
+#         help='It is env variable where our tests will be run. Possible values:'
+#              'prod, prod(default), qa'
+#     )
+# @pytest.fixture(autouse=True)
+# def getting_env(request):
+#     """
+#     Фикстура парсит значение ключа и возвращает его в тест.
+#     """
+#     env = request.config.getoption('--env')
+#     yield env
