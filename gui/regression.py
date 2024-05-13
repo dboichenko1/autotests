@@ -51,7 +51,11 @@ class Studilib():
         # откатываемся к первой доступной дате:
         while not self.check_exists_element(By.CSS_SELECTOR, '[aria-label="Go to"]',browser):
             time.sleep(2)
-        go_to = browser.find_element(By.CSS_SELECTOR, '[aria-label="Go to"]').click()
+        if self.check_exists_element(By.CSS_SELECTOR, '[aria-label="Go to"]',browser):
+            go_to = browser.find_element(By.CSS_SELECTOR, '[aria-label="Go to"]').click()
+        else:
+            time.sleep(3)
+            go_to = browser.find_element(By.CSS_SELECTOR, '[aria-label="Go to"]').click()
         data_value = browser.find_element(By.CSS_SELECTOR,"[class='input-RUSovanF size-small-RUSovanF with-end-slot-RUSovanF']").get_attribute("value")
         if data_value != "1023-01-01":
             data = browser.find_element(By.CSS_SELECTOR,"[class='input-RUSovanF size-small-RUSovanF with-end-slot-RUSovanF']")

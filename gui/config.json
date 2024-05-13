@@ -1,0 +1,12 @@
+{
+  "stable": "dal2-stable-charts.xstaging.tv",
+  "testing":"dal2-runner-backend-2.xstaging.tv",
+  "packages_for_export_data": {
+    "basicstudies":["GNuvT7h0","zJlhAtff","lPS6jvVP"],
+    "prostudies":["cLj969cv","mrhfAZWq","OXQkZfTO","zpFnYlQJ","ZR9K45TE","3AeJgcoK","zdBSTJLC","uuBtLNx6"],
+    "corestudies":["bADrHwko","4EF6I6ng","ZFHrOZyl","36eOERTU"]
+  },
+  "delete_identical_files": true,
+  "beta": "https://beta.tradingview.com",
+  "cookies_path": "cookies/beta_batut.pkl"
+}
